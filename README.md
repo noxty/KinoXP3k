@@ -21,3 +21,9 @@ Måske verdens bedste kino system.
 - Undgå statisk hvis muligt (irg)
 - Snak med Daniel (irg)
 - Pakker
+
+# Database
+
+- User: kino
+- Kode: kinoxp
+- adresse: http://lessthan3.xyz/kino
