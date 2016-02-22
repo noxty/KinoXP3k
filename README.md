@@ -9,3 +9,15 @@ Måske verdens bedste kino system.
 - git commit -m "first commit"
 - git remote add origin https://github.com/noxty/KinoXP3k.git
 - git push -u origin master
+
+
+# kodestandarder.
+
+- { på ny linie
+- Variabelnavne på engelsk
+- Ingen forkortelser (irg)
+- CamelCasing
+- Kommenter metoder/loops
+- Undgå statisk hvis muligt (irg)
+- Snak med Daniel (irg)
+- Pakker
