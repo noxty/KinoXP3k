@@ -16,7 +16,7 @@ public class Test
 
         //bookings.add(booking);
 
-        System.out.print(bookings);
+        //System.out.print(bookings);
 
 
     }
