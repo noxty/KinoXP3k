@@ -1,4 +1,5 @@
-import java.sql.Timestamp;
+package Classes;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -61,9 +62,6 @@ public class Screening
         this.timestamp = timestamp;
     }
 }
-
-
-
 
 
 /*

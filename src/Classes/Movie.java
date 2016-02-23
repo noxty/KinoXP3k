@@ -1,5 +1,7 @@
+package Classes;
+
 /*
-    Movie(movieID, title, year, description, ageRestriction, playingTime, premiere, status, price)
+    Classes.Movie(movieID, title, year, description, ageRestriction, playingTime, premiere, status, price)
  */
 public class Movie
 {

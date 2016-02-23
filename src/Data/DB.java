@@ -8,9 +8,7 @@ import javafx.scene.layout.VBox;
 import java.sql.*;
 import java.util.Map;
 
-/**
- * Created by B on 08-12-2015.
- */
+
 public class DB
 {
     private static DB Instance = new DB();
@@ -24,7 +22,7 @@ public class DB
         try
         {
             String url = "jdbc:mysql://lessthan3.xyz/kino";
-            conn = DriverManager.getConnection(url, "kino", "kinxp");
+            conn = DriverManager.getConnection(url, "kino", "kinoxp");
             stmt = conn.createStatement();
         }
         catch (Exception e)
@@ -88,4 +86,3 @@ public class DB
         return null;
     }
 }
-

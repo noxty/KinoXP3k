@@ -1,3 +1,5 @@
+package Classes;
+
 /*
     Booking(bookingID, screeningID, customerID, row, seat, status)
 */
