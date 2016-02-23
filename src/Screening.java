@@ -2,10 +2,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-/**
- * Created by oelsner on 22/02/16.
- */
-public class Show
+public class Screening
 {
     ArrayList<Booking> bookings = new ArrayList<>();
 
@@ -20,7 +17,7 @@ public class Show
     private int hall;
     private GregorianCalendar time;
 
-    public Show(Movie movie, GregorianCalendar time , int hall)
+    public Screening(Movie movie, GregorianCalendar time , int hall)
     {
         this.movie = movie;
         this.time = time;
