@@ -8,12 +8,17 @@ public class Booking
     private Movie movie;
     private Customer customer;
     private boolean isPaid;
+    private int seats;
+    private Show show;
 
-    public Booking(Movie movie, Customer customer, boolean isPaid)
+    public Booking(Movie movie, Customer customer, boolean isPaid, int seats, Show show)
     {
         this.setMovie(movie);
         this.setCustomer(customer);
         this.setPaid(isPaid);
+        this.seats = seats;
+        this.show = show;
+
     }
 
     public String toString()
@@ -53,5 +58,10 @@ public class Booking
     public void setPaid(boolean paid)
     {
         isPaid = paid;
+    }
+
+    public int getSeats()
+    {
+        return this.seats;
     }
 }
