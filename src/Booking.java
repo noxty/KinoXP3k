@@ -1,67 +1,95 @@
-import java.net.URL;
-
-/**
- * Created by oelsner on 22/02/16.
- */
+/*
+    Booking(bookingID, screeningID, customerID, row, seat, status)
+*/
 public class Booking
 {
-    private Movie movie;
-    private Customer customer;
-    private boolean isPaid;
-    private int seats;
-    private Show show;
+    private int bookingID;
+    private int screeningID;
+    private int customerID;
+    private int row;
+    private int seat;
+    private int status;
 
-    public Booking(Movie movie, Customer customer, boolean isPaid, int seats, Show show)
+    public Booking(int bookingID, int screeningID, int customerID, int row, int seat, int status)
     {
-        this.setMovie(movie);
-        this.setCustomer(customer);
-        this.setPaid(isPaid);
-        this.seats = seats;
-        this.show = show;
-
+        this.bookingID = bookingID;
+        this.screeningID = screeningID;
+        this.customerID = customerID;
+        this.row = row;
+        this.seat = seat;
+        this.status = status;
     }
 
-    public String toString()
+    public int getBookingID()
     {
-        return getMovie().getTitle() + " " + getMovie().getRating() + "\n "
-                + getCustomer().getFirstName() + " " + getCustomer().getLastName()  + " " + "\n"
-                + getCustomer().getPhone();
-
+        return bookingID;
     }
 
-
-    public Movie getMovie()
+    public void setBookingID(int bookingID)
     {
-        return movie;
+        this.bookingID = bookingID;
     }
 
-    public void setMovie(Movie movie)
+    public int getScreeningID()
     {
-        this.movie = movie;
+        return screeningID;
     }
 
-    public Customer getCustomer()
+    public void setScreeningID(int screeningID)
     {
-        return customer;
+        this.screeningID = screeningID;
     }
 
-    public void setCustomer(Customer customer)
+    public int getCustomerID()
     {
-        this.customer = customer;
+        return customerID;
     }
 
-    public boolean isPaid()
+    public void setCustomerID(int customerID)
     {
-        return isPaid;
+        this.customerID = customerID;
     }
 
-    public void setPaid(boolean paid)
+    public int getRow()
     {
-        isPaid = paid;
+        return row;
     }
 
-    public int getSeats()
+    public void setRow(int row)
     {
-        return this.seats;
+        this.row = row;
+    }
+
+    public int getSeat()
+    {
+        return seat;
+    }
+
+    public void setSeat(int seat)
+    {
+        this.seat = seat;
+    }
+
+    public int getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(int status)
+    {
+        this.status = status;
+    }
+
+    //Info om Bookingen
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingID=" + bookingID +
+                ", screeningID=" + screeningID +
+                ", customerID=" + customerID +
+                ", row=" + row +
+                ", seat=" + seat +
+                ", status=" + status +
+                '}';
     }
 }

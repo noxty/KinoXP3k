@@ -3,7 +3,7 @@
  */
 public class Movie
 {
-    private String hej;
+    private String title;
     private int year;
     private String description;
     private int ageRestriction;
