@@ -1,5 +1,6 @@
 package Controller;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -49,9 +50,9 @@ public class imdbReader
 
             //System.out.println(map);
 
-        } catch (IOException e)
+        } catch (IOException|JSONException e)
         {
-            e.printStackTrace();
+            map.put("error", "No movie found.");
         }
 
         return map;

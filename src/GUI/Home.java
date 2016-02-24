@@ -29,23 +29,30 @@ public class Home extends Application
         HBox topBar = new HBox();
 
         // BUTTONS FOR TOP BAR
-        Button buttonBooking = new Button("Booking");
+        Button buttonBooking = new Button("Bookings");
         Button buttonOpretForestiling = new Button("Opret Forestilling");
         Button buttonPlaceHolder = new Button("Placeholder");
+        Button buttonAddMovie = new Button("Add Movie");
+        Button buttonAddScreening = new Button("Add Screening");
 
         // INDSÆT KNAPPER I TOP BAR
-        topBar.getChildren().addAll(buttonBooking, buttonOpretForestiling, buttonPlaceHolder);
+        topBar.getChildren().addAll(buttonBooking, buttonAddMovie, buttonAddScreening);
 
         // SCROLL PANE
         ScrollPane scrollPane = new ScrollPane();
 
 
         scrollPane.setFitToWidth(true);
-        scrollPane.setContent(BookingView.getHBox());
+        scrollPane.setContent(HomeView.getView());
 
         // INDSÆT I BORDERPANE
         pane.setTop(topBar);
         pane.setCenter(scrollPane);
+
+        // KONTROL AF KNAPPER
+        buttonAddMovie.setOnMouseClicked(e -> {
+            pane.setCenter(AddMovieView.getView());
+        });
 
         Scene scene = new Scene(pane, sceneWidth, sceneHeight);
         scene.getStylesheets().add("KinoStyle.css");

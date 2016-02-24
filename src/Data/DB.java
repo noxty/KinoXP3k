@@ -90,22 +90,22 @@ public class DB
     }
 // whatever
 
-    public void createMovie(int movieId, String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)
+    public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)
     {
         try
         {
-            String sqlString = "INSERT INTO movie(movieId, title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
             //String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
             prepStmt = conn.prepareStatement(sqlString);
 
-            prepStmt.setInt(1, movieId);
-            prepStmt.setString(2, title);
-            prepStmt.setString(3, description);
-            prepStmt.setInt(4, ageRestriction);
-            prepStmt.setInt(5, playingTime);
-            prepStmt.setLong(6, premiere);
-            prepStmt.setBoolean(7, movieStatus);
-            prepStmt.setDouble(8, price);
+            //prepStmt.setInt(1, movieId);
+            prepStmt.setString(1, title);
+            prepStmt.setString(2, description);
+            prepStmt.setInt(3, ageRestriction);
+            prepStmt.setInt(4, playingTime);
+            prepStmt.setLong(5, premiere);
+            prepStmt.setBoolean(6, movieStatus);
+            prepStmt.setDouble(7, price);
 
             /*
             //prepStmt.setInt(1, movieId);
