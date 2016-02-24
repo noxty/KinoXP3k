@@ -1,6 +1,7 @@
 package Data;
 
 import Classes.Movie;
+import Classes.Screening;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -139,7 +140,7 @@ public class DB
 
             while (rs.next())
             {
-                movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
+                movies.add(new Movie(rs.getString("title"), rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
             }
 
         } catch (Exception e)
@@ -150,9 +151,9 @@ public class DB
         return movies;
     }
 
-    public ArrayList<Movie> getScreenings()
+    public ArrayList<Screening> getScreenings()
     {
-        ArrayList<Movie> movies = new ArrayList<Movie>();
+        ArrayList<Screening> screenings = new ArrayList<>();
 
         //Statement stmt;
         ResultSet rs;
@@ -164,7 +165,8 @@ public class DB
 
             while (rs.next())
             {
-               // movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
+
+                // movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
             }
 
         } catch (Exception e)
@@ -172,6 +174,6 @@ public class DB
             e.printStackTrace();
         }
 
-        return movies;
+        return screenings;
     }
 }
