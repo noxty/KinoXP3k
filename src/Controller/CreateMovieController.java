@@ -12,6 +12,7 @@ public class CreateMovieController
 {
     public  void createMovie() throws SQLException
     {
+        /*
         Movie movie = new Movie();
         DB db = DB.getInstance();
         LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>();
@@ -24,5 +25,6 @@ public class CreateMovieController
         lhm.put(7, Boolean.toString(movie.isStatus()));
         lhm.put(8, Double.toString(movie.getPrice()));
         db.executeQuery("INSERT INTO Movie VALUES(?,?,?,?,?,?,?,?)",lhm);
+        */
     }
 }

@@ -1,0 +1,11 @@
+.BookingHBox {
+    -fx-padding: 50px, 0px, 0px, 0px;
+}
+
+.label {
+    -fx-text-fill: #000000;
+}
+
+.infoText {
+    -fx-text-fill: #000000;
+}

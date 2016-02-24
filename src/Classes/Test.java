@@ -10,6 +10,7 @@ public class Test
 {
     public static void main(String[] args)
     {
+        /*
         Customer customer = new Customer("Christian", "Oelsner", "12345678", 40);
         Movie movie = new Movie("Batman", "pg-13", "Action");
 
@@ -29,7 +30,7 @@ public class Test
 
         System.out.println(show.getBookings());
         //System.out.print(booking.toString());
-
+        */
 
     }
 }
