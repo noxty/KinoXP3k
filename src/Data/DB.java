@@ -2,6 +2,8 @@ package Data;
 
 import Classes.Movie;
 import Classes.Screening;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -20,6 +22,8 @@ public class DB
     private PreparedStatement prepStmt;
     private Statement stmt;
     private ResultSet rs;
+
+    private ObservableList movieList;
 
     private DB()
     {
@@ -97,38 +101,62 @@ public class DB
         {
             String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
             //String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
-            prepStmt = conn.prepareStatement(sqlString);
 
-            //prepStmt.setInt(1, movieId);
-            prepStmt.setString(1, title);
-            prepStmt.setString(2, description);
-            prepStmt.setInt(3, ageRestriction);
-            prepStmt.setInt(4, playingTime);
-            prepStmt.setLong(5, premiere);
-            prepStmt.setBoolean(6, movieStatus);
-            prepStmt.setDouble(7, price);
+            PreparedStatement ps;
 
-            /*
-            //prepStmt.setInt(1, movieId);
-            prepStmt.setString(1, title);
-            prepStmt.setString(2, description);
-            prepStmt.setInt(3, ageRestriction);
-            prepStmt.setInt(4, playingTime);
-            prepStmt.setLong(5, premiere);
-            prepStmt.setBoolean(6, movieStatus);
-            prepStmt.setDouble(7, price);
+            //prepStmt = conn.prepareStatement(sqlString);
+
+/*
+            PreparedStatement state;
+
+            String sql = "SELECT DokumentID, sti, note, oprettet FROM " +
+                    "dokumenter " +
+                    "WHERE katID = " + _id;
+
+            state = con.prepareStatement(sql);
             */
 
-            prepStmt.executeUpdate();
+            //prepStmt.setInt(1, movieId);
+
+
+
+            ps = conn.prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, title);
+            ps.setString(2, description);
+            ps.setInt(3, ageRestriction);
+            ps.setInt(4, playingTime);
+            ps.setLong(5, premiere);
+            ps.setBoolean(6, movieStatus);
+            ps.setDouble(7, price);
+
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            int id = 0;
+            if (rs.next())
+            {
+                id = rs.getInt(1);
+            }
+
+            addMovie(new Movie(id, title, description, ageRestriction, playingTime, premiere, movieStatus, price));
+
         } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Movie> getMovies()
+    public void addMovie(Movie m) {
+        movieList.add(m);
+    }
+
+    public ObservableList<Movie> getMovies() {
+        return movieList;
+    }
+
+    public ObservableList<Movie> getMoviesOnLaunch()
     {
-        ArrayList<Movie> movies = new ArrayList<Movie>();
+        movieList = FXCollections.observableArrayList();
 
         //Statement stmt;
         ResultSet rs;
@@ -140,7 +168,7 @@ public class DB
 
             while (rs.next())
             {
-                movies.add(new Movie(rs.getString("title"), rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
+                movieList.add(new Movie(rs.getInt("movieid"), rs.getString("title"), rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
             }
 
         } catch (Exception e)
@@ -148,7 +176,7 @@ public class DB
             e.printStackTrace();
         }
 
-        return movies;
+        return movieList;
     }
 
     public ArrayList<Screening> getScreenings()

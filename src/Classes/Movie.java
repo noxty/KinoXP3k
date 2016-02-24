@@ -5,6 +5,7 @@ package Classes;
  */
 public class Movie
 {
+    private int id;
     private String title;
     private String description;
     private int ageRestriction;
@@ -13,8 +14,9 @@ public class Movie
     private boolean status;
     private double price;
 
-    public Movie(String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price)
+    public Movie(int id, String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price)
     {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.ageRestriction = ageRestriction;
