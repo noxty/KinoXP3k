@@ -1,11 +1,14 @@
 package Data;
 
+import Classes.Movie;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -84,5 +87,90 @@ public class DB
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void createMovie(int movieId, String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)
+    {
+        try
+        {
+            String sqlString = "INSERT INTO movie(movieId, title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+            //String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            prepStmt = conn.prepareStatement(sqlString);
+
+            prepStmt.setInt(1, movieId);
+            prepStmt.setString(2, title);
+            prepStmt.setString(3, description);
+            prepStmt.setInt(4, ageRestriction);
+            prepStmt.setInt(5, playingTime);
+            prepStmt.setLong(6, premiere);
+            prepStmt.setBoolean(7, movieStatus);
+            prepStmt.setDouble(8, price);
+
+            /*
+            //prepStmt.setInt(1, movieId);
+            prepStmt.setString(1, title);
+            prepStmt.setString(2, description);
+            prepStmt.setInt(3, ageRestriction);
+            prepStmt.setInt(4, playingTime);
+            prepStmt.setLong(5, premiere);
+            prepStmt.setBoolean(6, movieStatus);
+            prepStmt.setDouble(7, price);
+            */
+
+            prepStmt.executeUpdate();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Movie> getMovies()
+    {
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+
+        //Statement stmt;
+        ResultSet rs;
+
+        try
+        {
+            String sqlString = "SELECT * FROM movie";
+            rs = stmt.executeQuery(sqlString);
+
+            while (rs.next())
+            {
+                movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
+            }
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return movies;
+    }
+
+    public ArrayList<Movie> getScreenings()
+    {
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+
+        //Statement stmt;
+        ResultSet rs;
+
+        try
+        {
+            String sqlString = "SELECT * FROM screening";
+            rs = stmt.executeQuery(sqlString);
+
+            while (rs.next())
+            {
+               // movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
+            }
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return movies;
     }
 }

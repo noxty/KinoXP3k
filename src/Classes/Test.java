@@ -1,5 +1,7 @@
 package Classes;
 
+import Data.DB;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -23,7 +25,7 @@ public class Test
         //System.out.print(bookings);
 
         Show show = new Show(movie, new GregorianCalendar(2016, 1, 12, 12, 1,2), 1);
-        Booking booking = new Booking(movie, customer, true, 241, show);
+        Booking booking = new Booking(movie, customer, true, 240, show);
 
 
         show.addBooking(booking);
@@ -31,6 +33,21 @@ public class Test
         System.out.println(show.getBookings());
         //System.out.print(booking.toString());
         */
+
+        ArrayList<Movie> movies = new ArrayList<>();
+
+        DB dataBase = DB.getInstance();
+
+        dataBase.createMovie(12, "Krummerne", "btete", 1, 11, 121212, false, 90);
+
+        movies = dataBase.getMovies();
+
+        for (int i = 0; i < movies.size(); i++)
+        {
+            System.out.println(movies.get(i).getTitle());
+        }
+
+       // System.out.println(movies.get(0).getTitle());
 
     }
 }
