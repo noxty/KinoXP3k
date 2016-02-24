@@ -1,5 +1,6 @@
 package GUI;
 
+import Classes.Screening;
 import Data.DB;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -51,6 +52,10 @@ public class Home extends Application
         pane.setCenter(scrollPane);
 
         // KONTROL AF KNAPPER
+        buttonAddScreening.setOnMouseClicked(e -> {
+            pane.setCenter(ScreeningView.getView());
+        });
+
         buttonAddMovie.setOnMouseClicked(e -> {
             pane.setCenter(AddMovieView.getView());
         });
