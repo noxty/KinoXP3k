@@ -54,6 +54,9 @@ public class Home extends Application
         buttonAddMovie.setOnMouseClicked(e -> {
             pane.setCenter(AddMovieView.getView());
         });
+        buttonBooking.setOnMouseClicked(e -> {
+            pane.setCenter(AddBookingView.getView());
+        });
 
         DB db = DB.getInstance();
         db.getMoviesOnLaunch();

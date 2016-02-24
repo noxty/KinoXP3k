@@ -32,10 +32,6 @@ public class ScreeningView
         TextField minutes = new TextField("");
 
 
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-
-
-
         return layout;
     }
 
@@ -58,7 +54,7 @@ public class ScreeningView
 
         hbox.getChildren().addAll(Tyear, Tmonth, Tday, Thour, Tminutes);
 
-        return  hbox;
+        return hbox;
 
     }
 }
