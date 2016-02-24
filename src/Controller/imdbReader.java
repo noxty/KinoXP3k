@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by Hans on 24-02-2016.
  */
-public class TraktTV
+public class imdbReader
 {
 
     public Map<String, String> getInfo(String query, int year) {
