@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.DB;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,6 +54,9 @@ public class Home extends Application
         buttonAddMovie.setOnMouseClicked(e -> {
             pane.setCenter(AddMovieView.getView());
         });
+
+        DB db = DB.getInstance();
+        db.getMoviesOnLaunch();
 
         Scene scene = new Scene(pane, sceneWidth, sceneHeight);
         scene.getStylesheets().add("KinoStyle.css");

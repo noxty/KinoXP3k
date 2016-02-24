@@ -20,7 +20,7 @@ public class CreateMovieController
     boolean status;
     double price;
 
-
+/*
     public ObservableList<Movie> getMovie() throws SQLException
     {
         ObservableList<Movie> movies = FXCollections.observableArrayList();
@@ -50,4 +50,5 @@ public class CreateMovieController
         return getMovie();
 
     }
+    */
 }

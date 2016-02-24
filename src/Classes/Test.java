@@ -38,9 +38,11 @@ public class Test
 
         DB dataBase = DB.getInstance();
 
-        dataBase.createMovie("Krummerne", "btete", 1, 11, 121212, false, 90);
+        //dataBase.createMovie("Krummerne", "btete", 1, 11, 121212, false, 90);
 
-        movies = dataBase.getMovies();
+        //movies = dataBase.getMovies();
+
+        //
 
         for (int i = 0; i < movies.size(); i++)
         {
