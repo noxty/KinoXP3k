@@ -6,7 +6,6 @@ package Classes;
 public class Movie
 {
     private String title;
-    private int year;
     private String description;
     private int ageRestriction;
     private int playingtime;
@@ -14,10 +13,9 @@ public class Movie
     private boolean status;
     private double price;
 
-    public Movie(String title, int year, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price)
+    public Movie(String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price)
     {
         this.title = title;
-        this.year = year;
         this.description = description;
         this.ageRestriction = ageRestriction;
         this.playingtime = playingtime;
@@ -34,16 +32,6 @@ public class Movie
     public void setTitle(String title)
     {
         this.title = title;
-    }
-
-    public int getYear()
-    {
-        return year;
-    }
-
-    public void setYear(int year)
-    {
-        this.year = year;
     }
 
     public String getDescription()
