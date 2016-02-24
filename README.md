@@ -25,5 +25,5 @@ Måske verdens bedste kino system.
 # Database
 
 - User: kino
-- Kode: kinoxp
+- Kode: spørgs Hans
 - adresse: mysql://lessthan3.xyz:3306/kino
