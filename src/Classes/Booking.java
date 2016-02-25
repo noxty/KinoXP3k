@@ -12,6 +12,15 @@ public class Booking
     private int seat;
     private int status;
 
+    //Til at lave objecter udenom databasen da vi autogenererer vores id
+    public Booking(int row, int seat, int status)
+    {
+        this.row = row;
+        this.seat = seat;
+        this.status = status;
+    }
+
+    //Constructor til at lave objecter ud fra databasen
     public Booking(int bookingID, int screeningID, int customerID, int row, int seat, int status)
     {
         this.bookingID = bookingID;

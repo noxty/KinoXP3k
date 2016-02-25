@@ -125,7 +125,6 @@ public class BookingView
 
             movieInfoBox.getChildren().addAll(movieInfoLeftBox);
 
-            //Label test = new Label("Test LAbel " + i % moviesPerRow);
 
             movieBox.getChildren().addAll(moviePosterBox, movieInfoBox);
 
