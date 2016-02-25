@@ -17,7 +17,8 @@ import java.util.Map;
 public class imdbReader
 {
 
-    public Map<String, String> getInfo(String query, int year) {
+    public Map<String, String> getInfo(String query, int year)
+    {
         Map<String, String> map = new HashMap<>();
 
         try
@@ -59,7 +60,8 @@ public class imdbReader
     }
 
 
-    private String apiToString(String in) throws IOException {
+    private String apiToString(String in) throws IOException
+    {
         URL url = new URL(in);
 
         BufferedReader streamReader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));

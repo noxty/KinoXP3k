@@ -24,7 +24,8 @@ public class Home extends Application
         launch(args);
     }
 
-    public void start(Stage stage) {
+    public void start(Stage stage)
+    {
         BorderPane pane = new BorderPane();
 
         // TOP BAR
