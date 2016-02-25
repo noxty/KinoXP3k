@@ -7,9 +7,7 @@ import javafx.scene.layout.HBox;
 
 import java.util.Calendar;
 
-/**
- * Created by Hans on 24-02-2016.
- */
+
 public class DateBox
 {
     public static TextField fieldYear;

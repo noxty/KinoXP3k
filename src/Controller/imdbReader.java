@@ -11,9 +11,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Hans on 24-02-2016.
- */
+
 public class imdbReader
 {
 

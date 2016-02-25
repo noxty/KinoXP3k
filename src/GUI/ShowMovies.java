@@ -1,5 +1,9 @@
 package GUI;
 
+import Classes.Movie;
+import Controller.GetMovieController;
+import Data.DB;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,10 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-/**
- * Created by Hans on 23-02-2016.
- */
-public class BookingView
+
+public class ShowMovies
 {
 
     private static Double movieBoxWidth = 300.0;
@@ -35,7 +37,9 @@ public class BookingView
         layout.setAlignment(Pos.CENTER);
         layout.getStyleClass().add("BookingHBox");
 
-        int temporarySize = 12;
+        DB db = DB.getInstance();
+        ObservableList<Movie> movies = GetMovieController.getMoviesOnLaunch();
+
         int gap = 10;
 
         // BOOKING TITEL
@@ -54,12 +58,15 @@ public class BookingView
         row.setAlignment(rowAlignment);
         column.setAlignment(Pos.CENTER);
 
-        for (int i = 0; i < temporarySize; i++) {
+        int i = 0;
 
+        for (Movie m : movies)
+        {
+            System.out.println(m.getTitle());
             VBox movieBox = new VBox();
 
 
-            Text movieTitle = new Text("Film Titel");
+            Text movieTitle = new Text(m.getTitle());
             HBox moviePosterBox = new HBox();
             HBox movieInfoBox = new HBox(10);
             VBox movieInfoLeftBox = new VBox();
@@ -68,24 +75,19 @@ public class BookingView
             movieInfoLeftBox.setPrefWidth(movieBoxWidth);
             movieInfoRightBox.setPrefWidth(movieBoxInfoRight);
             //
-            Label movieLabelYear = new Label("Year");
             Label movieLabelAgeRestriction = new Label("Age");
-            Label movieLabelGenre = new Label("Genre");
+            //Label movieLabelGenre = new Label("Genre");
             Label movieLabelPlayingTime = new Label("Playtime");
             Label movieLabelPrice = new Label("Price");
             Label movieLabelDescription = new Label("Description");
 
-            Text movieTextYear = new Text("1994");
-            Text movieTextAgeRestriction = new Text("30");
-            Text movieTextGenre = new Text("Hørrer");
-            Text movieTextPlayingTime = new Text("2:30");
-            Text movieTextPrice = new Text("430 kr");
-            Text movieTextDescription = new Text("OH MY GAWD!!! IT IS AWESOME!! OH MY GAWD!!! IT IS AWESOME!! OH MY GAWD!!! IT IS AWESOME!! OH MY GAWD!!! IT IS AWESOME!! OH MY GAWD!!! IT IS AWESOME!!");
+            Text movieTextAgeRestriction = new Text(String.valueOf(m.getAgeRestriction()));
+            //Text movieTextGenre = new Text(m.get);
+            Text movieTextPlayingTime = new Text(String.valueOf(m.getPlayingtime()));
+            Text movieTextPrice = new Text(String.valueOf(m.getPrice()));
+            Text movieTextDescription = new Text(m.getDescription());
 
             movieTextDescription.setWrappingWidth(movieBoxInfoRight);
-
-            movieTextDescription.getStyleClass().add("infoText");
-            movieTextYear.getStyleClass().add("infoText");
 
             ColumnConstraints labels = new ColumnConstraints();
             labels.setHalignment(HPos.LEFT);
@@ -98,27 +100,23 @@ public class BookingView
             infoGrid.setPrefWidth(movieBoxWidth);
 
             infoGrid.getColumnConstraints().addAll(labels,fields);
-            infoGrid.add(movieLabelYear, 0, 0);
-            infoGrid.add(movieTextYear, 1, 0);
-            infoGrid.add(movieLabelGenre, 0, 1);
-            infoGrid.add(movieTextGenre, 1, 1);
-            infoGrid.add(movieLabelAgeRestriction, 0, 2);
-            infoGrid.add(movieTextAgeRestriction, 1, 2);
-            infoGrid.add(movieLabelPlayingTime, 0, 3);
-            infoGrid.add(movieTextPlayingTime, 1, 3);
-            infoGrid.add(movieLabelPrice, 0, 4);
-            infoGrid.add(movieTextPrice, 1, 4);
-            infoGrid.add(movieLabelDescription, 0, 5);
-            infoGrid.add(movieTextDescription, 1, 5);
+            infoGrid.add(movieLabelAgeRestriction, 0, 0);
+            infoGrid.add(movieTextAgeRestriction, 1, 0);
+            infoGrid.add(movieLabelPlayingTime, 0, 1);
+            infoGrid.add(movieTextPlayingTime, 1, 1);
+            infoGrid.add(movieLabelPrice, 0, 2);
+            infoGrid.add(movieTextPrice, 1, 2);
+            infoGrid.add(movieLabelDescription, 0, 3);
+            infoGrid.add(movieTextDescription, 1, 3);
 
             movieInfoLeftBox.getChildren().addAll(infoGrid);
             //movieInfoRightBox.getChildren().addAll(movieLabelDescription, movieTextDescription);
 
             moviePosterBox.getChildren().add(movieTitle);
-            moviePosterBox.setAlignment(Pos.BOTTOM_LEFT);
+            //moviePosterBox.setAlignment(Pos.BOTTOM_LEFT);
 
             moviePosterBox.setPrefSize(movieBoxWidth, movieBoxHeight);
-            moviePosterBox.setStyle("-fx-background-color: darkslategrey");
+            moviePosterBox.setStyle("-fx-background-image: url("+m.getPoster()+")");
 
             movieInfoBox.setPrefSize(movieBoxWidth, movieInfoHeight);
             movieInfoBox.setStyle("-fx-background-color: grey;");
@@ -134,47 +132,17 @@ public class BookingView
                 row = new HBox(gap);
                 row.setAlignment(rowAlignment);
             }
-
-            if (i == temporarySize-1) {
-                if (i % moviesPerRow != 0) {
-                    column.getChildren().add(row);
-                }
-            }
+            i++;
         }
 
-        layout.getChildren().add(column);
-
-        /*
-        for (dbSubKategori s : data)
-        {
-
-            Button current = new Button(s.getNavn());
-            current.getStyleClass().add("button-middle");
-            current.setOnAction(e -> {
-                Sunbeam2.setMain(SubFiler(s.getNavn(), _title, _id, s.getSubId()));
-            });
-
-            // Vi vil gerne vise knapperne i rækker, med max 3 i én række.
-            // Nedenunder kigger den på hvor mange objekter den allerede har sat ind
-            // og laver en ny HBox (ny række) ved hvert 3. objekt
-
-            row.getChildren().add(current);
-            if (iterator % 3 == 2)
-            {
-                column.getChildren().add(row);
-                row = new HBox(gap);
-                row.setAlignment(Pos.CENTER);
-            }
-
-            iterator++;
-        }
-
-        if (iterator % 3 != 0)
-        {
+        if (i % moviesPerRow != 0) {
             column.getChildren().add(row);
         }
-        */
 
+
+        System.out.println(movies);
+
+        layout.getChildren().add(column);
 
         return layout;
     }

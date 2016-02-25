@@ -1,7 +1,5 @@
 package GUI;
 
-import Classes.Screening;
-import Data.DB;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,9 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-/**
- * Created by Hans on 23-02-2016.
- */
+
 public class Home extends Application
 {
 
@@ -31,41 +27,43 @@ public class Home extends Application
         // TOP BAR
         HBox topBar = new HBox();
 
+
+
         // BUTTONS FOR TOP BAR
         Button buttonBooking = new Button("Bookings");
         Button buttonOpretForestiling = new Button("Opret Forestilling");
         Button buttonPlaceHolder = new Button("Placeholder");
-        Button buttonAddMovie = new Button("Add Movie");
-        Button buttonAddScreening = new Button("Add Screening");
+        Button buttonMovie = new Button("Movie");
+        Button buttonScreening = new Button("Screening");
+        Button buttonHome = new Button("Home");
 
         // INDSÆT KNAPPER I TOP BAR
-        topBar.getChildren().addAll(buttonBooking, buttonAddMovie, buttonAddScreening);
+        topBar.getChildren().addAll(buttonHome, buttonBooking, buttonMovie, buttonScreening);
 
         // SCROLL PANE
         ScrollPane scrollPane = new ScrollPane();
 
 
         scrollPane.setFitToWidth(true);
-        scrollPane.setContent(HomeView.getView());
+        scrollPane.setContent(ShowMovies.getHBox());
 
         // INDSÆT I BORDERPANE
         pane.setTop(topBar);
         pane.setCenter(scrollPane);
 
         // KONTROL AF KNAPPER
-        buttonAddScreening.setOnMouseClicked(e -> {
-            pane.setCenter(ScreeningView.getView());
+
+
+        buttonHome.setOnMouseClicked(e -> {
+            pane.setCenter(ShowMovies.getHBox());
         });
 
-        buttonAddMovie.setOnMouseClicked(e -> {
-            pane.setCenter(AddMovieView.getView());
+        buttonMovie.setOnMouseClicked(e -> {
+            pane.setCenter(SubMovies.subWindow());
         });
         buttonBooking.setOnMouseClicked(e -> {
-            pane.setCenter(AddBookingView.getView());
+            pane.setCenter(SubBooking.subWindow());
         });
-
-        DB db = DB.getInstance();
-        db.getMoviesOnLaunch();
 
         Scene scene = new Scene(pane, sceneWidth, sceneHeight);
         scene.getStylesheets().add("KinoStyle.css");

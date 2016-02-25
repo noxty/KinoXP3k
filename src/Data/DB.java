@@ -22,7 +22,6 @@ public class DB
     private Statement stmt;
     private ResultSet rs;
 
-    private ObservableList movieList;
 
     private DB()
     {
@@ -37,6 +36,11 @@ public class DB
             e.printStackTrace();
         }
     }
+
+    public Connection getConnection() {
+        return conn;
+    }
+
     public static DB getInstance()
     {
         return Instance;
@@ -91,74 +95,6 @@ public class DB
             e.printStackTrace();
         }
         return null;
-    }
-// whatever
-
-    public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)
-    {
-        try
-        {
-            String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
-            //String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
-            prepStmt = conn.prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
-
-            //prepStmt.setInt(1, movieId);
-            prepStmt.setString(1, title);
-            prepStmt.setString(2, description);
-            prepStmt.setInt(3, ageRestriction);
-            prepStmt.setInt(4, playingTime);
-            prepStmt.setLong(5, premiere);
-            prepStmt.setBoolean(6, movieStatus);
-            prepStmt.setDouble(7, price);
-
-            prepStmt.executeUpdate();
-
-            ResultSet rs = prepStmt.getGeneratedKeys();
-            int id = 0;
-            if (rs.next())
-            {
-                id = rs.getInt(1);
-            }
-
-            addMovie(new Movie(id, title, description, ageRestriction, playingTime, premiere, movieStatus, price));
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public void addMovie(Movie m) {
-        movieList.add(m);
-    }
-
-    public ObservableList<Movie> getMovies() {
-        return movieList;
-    }
-
-    public ObservableList<Movie> getMoviesOnLaunch()
-    {
-        movieList = FXCollections.observableArrayList();
-
-        //Statement stmt;
-        ResultSet rs;
-
-        try
-        {
-            String sqlString = "SELECT * FROM movie";
-            rs = stmt.executeQuery(sqlString);
-
-            while (rs.next())
-            {
-                movieList.add(new Movie(rs.getInt("movieid"), rs.getString("title"), rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
-            }
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        return movieList;
     }
 
     public ArrayList<Movie> getScreenings()
