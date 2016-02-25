@@ -17,14 +17,14 @@ public class SubBooking
         HBox top = new HBox();
         top.getStyleClass().add("Sub-bar");
 
-        Button btn1 = new Button("Create");
-        btn1.setOnMouseClicked(e -> {
+        Button create = new Button("Create");
+        create.setOnMouseClicked(e -> {
             pane.setCenter(AddBookingView.getView());
         });
-        Button btn2 = new Button("Edit");
-        Button btn3 = new Button("Delete");
+        Button edit = new Button("Edit");
+        Button delete = new Button("Delete");
 
-        top.getChildren().addAll(btn1, btn2, btn3);
+        top.getChildren().addAll(create, edit, delete);
 
         pane.setTop(top);
 

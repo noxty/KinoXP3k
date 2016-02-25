@@ -1,7 +1,5 @@
 package GUI;
 
-import Classes.Screening;
-import Data.DB;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
