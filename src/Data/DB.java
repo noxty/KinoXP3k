@@ -22,7 +22,6 @@ public class DB
     private Statement stmt;
     private ResultSet rs;
 
-    private ObservableList movieList;
 
     private DB()
     {
@@ -37,6 +36,11 @@ public class DB
             e.printStackTrace();
         }
     }
+
+    public Connection getConnection() {
+        return conn;
+    }
+
     public static DB getInstance()
     {
         return Instance;
@@ -94,6 +98,7 @@ public class DB
     }
 // whatever
 
+    /*
     public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price, String poster)
     {
         try
@@ -128,7 +133,8 @@ public class DB
             e.printStackTrace();
         }
     }
-
+    */
+/*
     public void addMovie(Movie m) {
         movieList.add(m);
     }
@@ -162,7 +168,7 @@ public class DB
 
         return movieList;
     }
-
+*/
     public ArrayList<Movie> getScreenings()
     {
         ArrayList<Movie> movies = new ArrayList<Movie>();

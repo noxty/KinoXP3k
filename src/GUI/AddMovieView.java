@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.CreateMovieController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -142,7 +143,9 @@ public class AddMovieView
             //System.out.println(getDateFromTS(ts));
             //System.out.println(formatForDB(ts));
 
-            database.createMovie(fieldTitle.getText(), fieldDescription.getText(), ageRestrict, playTime, formatForDB(ts), true, price, poster);
+            CreateMovieController cmc = CreateMovieController.getInstance();
+
+            cmc.createMovie(fieldTitle.getText(), fieldDescription.getText(), ageRestrict, playTime, formatForDB(ts), true, price, poster);
 
 
             // public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)

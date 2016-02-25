@@ -1,6 +1,7 @@
 package GUI;
 
 import Classes.Movie;
+import Controller.GetMovieController;
 import Data.DB;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -37,9 +38,8 @@ public class ShowMovies
         layout.getStyleClass().add("BookingHBox");
 
         DB db = DB.getInstance();
-        ObservableList<Movie> movies = db.getMoviesOnLaunch();
+        ObservableList<Movie> movies = GetMovieController.getMoviesOnLaunch();
 
-        int temporarySize = 12;
         int gap = 10;
 
         // BOOKING TITEL
