@@ -94,11 +94,11 @@ public class DB
     }
 // whatever
 
-    public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)
+    public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price, String poster)
     {
         try
         {
-            String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price, poster) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             //String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price) VALUES(?, ?, ?, ?, ?, ?, ?)";
             prepStmt = conn.prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
 
@@ -110,6 +110,7 @@ public class DB
             prepStmt.setLong(5, premiere);
             prepStmt.setBoolean(6, movieStatus);
             prepStmt.setDouble(7, price);
+            prepStmt.setString(8, poster);
 
             prepStmt.executeUpdate();
 
@@ -120,7 +121,7 @@ public class DB
                 id = rs.getInt(1);
             }
 
-            addMovie(new Movie(id, title, description, ageRestriction, playingTime, premiere, movieStatus, price));
+            addMovie(new Movie(id, title, description, ageRestriction, playingTime, premiere, movieStatus, price, poster));
 
         } catch (Exception e)
         {
@@ -150,7 +151,7 @@ public class DB
 
             while (rs.next())
             {
-                movieList.add(new Movie(rs.getInt("movieid"), rs.getString("title"), rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
+                movieList.add(new Movie(rs.getInt("movieid"), rs.getString("title"), rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price"), rs.getString("poster")));
             }
 
         } catch (Exception e)

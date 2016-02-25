@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.LinkedHashMap;
 
 public class CreateMovieController
-{
+{/*
     public ObservableList<Movie> createMovie(int id, String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price) throws SQLException
     {
         ObservableList<Movie> movies = FXCollections.observableArrayList();
@@ -42,5 +42,5 @@ public class CreateMovieController
         return createMovie(id, title, description, ageRestriction, playingtime, premiere, status, price);
 
     }
-
+*/
 }

@@ -18,12 +18,13 @@ import java.util.Map;
 
 public class AddMovieView
 {
-
+    private static String poster;
     public static VBox getView() {
         VBox layout = new VBox();
         GridPane layoutGrid = new GridPane();
         int gaps = 10;
 
+        poster = "";
         layoutGrid.setHgap(gaps);
         layoutGrid.setVgap(gaps);
 
@@ -107,6 +108,7 @@ public class AddMovieView
                 fieldAgeRestriction.setText("Rating: " + info.get("rating"));
                 fieldPlaytime.setText(info.get("playtime"));
                 fieldPremiere.setText(info.get("release"));
+                poster = info.get("poster");
             }
         });
 
@@ -140,7 +142,7 @@ public class AddMovieView
             //System.out.println(getDateFromTS(ts));
             //System.out.println(formatForDB(ts));
 
-            database.createMovie(fieldTitle.getText(), fieldDescription.getText(), ageRestrict, playTime, formatForDB(ts), true, price);
+            database.createMovie(fieldTitle.getText(), fieldDescription.getText(), ageRestrict, playTime, formatForDB(ts), true, price, poster);
 
 
             // public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)

@@ -13,8 +13,9 @@ public class Movie
     private long premiere;
     private boolean status;
     private double price;
+    private String poster;
 
-    public Movie(int id, String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price)
+    public Movie(int id, String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price, String poster)
     {
         this.id = id;
         this.title = title;
@@ -24,6 +25,7 @@ public class Movie
         this.premiere = premiere;
         this.status = status;
         this.price = price;
+        this.poster = poster;
     }
 
     public int getId()
@@ -104,5 +106,15 @@ public class Movie
     public void setPrice(double price)
     {
         this.price = price;
+    }
+
+    public String getPoster()
+    {
+        return poster;
+    }
+
+    public void setPoster(String poster)
+    {
+        this.poster = poster;
     }
 }
