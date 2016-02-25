@@ -1,7 +1,10 @@
 package Data;
 
+import Classes.Booking;
 import Classes.Movie;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
@@ -9,9 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class DB
@@ -21,6 +22,7 @@ public class DB
     private PreparedStatement prepStmt;
     private Statement stmt;
     private ResultSet rs;
+    private List<Booking> bookings;
 
     private ObservableList movieList;
 
@@ -59,6 +61,8 @@ public class DB
 
         return true;
     }
+
+
     //Henter et query der ER en select
     public ResultSet getResult(String sqlString) throws SQLException
     {
@@ -77,7 +81,8 @@ public class DB
         prepStmt.executeQuery();
         return rs;
     }
-    //kan sikkert gøres bedre og er dum. Blivre kun brugt en enkelt gang fordi det er lavet dumt
+
+    //Kan sikkert gøres bedre og er dum. Blivre kun brugt en enkelt gang fordi det er lavet dumt
     public static ResultSet secondaryResultSet(String sqlString)
     {
         try
@@ -92,7 +97,7 @@ public class DB
         }
         return null;
     }
-// whatever
+
 
     public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)
     {
@@ -185,4 +190,54 @@ public class DB
 
         return movies;
     }
+
+    public List<Booking> getBookingByPhoneNo(String phoneNoInput) throws SQLException
+    {
+        bookings = new ArrayList<>();
+
+        try
+        {
+            String sqlString = "SELECT booking.bookingID, booking.screeningID, " +
+                    "customer.fname, customer.lname, booking.row, booking.seat, booking.bookingStatus, " +
+                    "screening.showtime " +
+                    "FROM booking " +
+                    "JOIN customer " +
+                    "ON booking.customerID = customer.customerID " +
+                    "JOIN screening " +
+                    "ON booking.screeningID = screening.screeningID " +
+                    "WHERE phoneNo = '"+ phoneNoInput +"'";
+            ResultSet rs = stmt.executeQuery(sqlString);
+
+            while (rs.next())
+            {
+                bookings.add(new Booking(rs.getInt("bookingID"), rs.getInt("screeningID"), rs.getString("fname"), rs.getString("lname"), rs.getInt("row"), rs.getInt("seat"), rs.getString("bookingStatus"), rs.getLong("showtime")));
+            }
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return bookings;
+    }
+
+    public void deleteBooking(Booking b) throws ClassNotFoundException
+    {
+        try
+        {
+            String insert = "DELETE FROM booking WHERE bookingID = ?";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(insert);
+
+            int booking = b.getBookingID();
+
+            preparedStatement.setInt(1, booking);
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

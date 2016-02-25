@@ -1,26 +1,58 @@
 package Classes;
 
-/**
- * Created by oelsner on 22/02/16.
- */
 public class Customer extends Person
 {
-    private int age;
+    private int customerID;
+    private String fName;
+    private String lName;
+    private int phoneNo;
 
-
-    public Customer(String firstName, String lastName, String phone, int age)
-    {
-        super(firstName, lastName, phone);
-        this.age = age;
+    public Customer(int customerID, String fName, String lName, int phoneNo) {
+        this.customerID = customerID;
+        this.fName = fName;
+        this.lName = lName;
+        this.phoneNo = phoneNo;
     }
 
-    public int getAge()
-    {
-        return age;
+    public int getCustomerID() {
+        return customerID;
     }
 
-    public void setAge(int age)
-    {
-        this.age = age;
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public int getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(int phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "phoneNo=" + phoneNo +
+                ", lName='" + lName + '\'' +
+                ", fName='" + fName + '\'' +
+                ", customerID=" + customerID +
+                '}';
     }
 }

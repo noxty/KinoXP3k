@@ -1,25 +1,29 @@
 package Classes;
 
 /*
-    Booking(bookingID, screeningID, customerID, row, seat, status)
+    Booking(bookingID, screeningID, fName, lName, row, seat, status)
 */
 public class Booking
 {
     private int bookingID;
     private int screeningID;
-    private int customerID;
+    private String fName;
+    private String lName;
     private int row;
     private int seat;
-    private int status;
+    private String bookingStatus;
+    private Long showtime;
 
-    public Booking(int bookingID, int screeningID, int customerID, int row, int seat, int status)
+    public Booking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, long showtime)
     {
         this.bookingID = bookingID;
         this.screeningID = screeningID;
-        this.customerID = customerID;
+        this.fName = fName;
+        this.lName = lName;
         this.row = row;
         this.seat = seat;
-        this.status = status;
+        this.bookingStatus = bookingStatus;
+        this.showtime = showtime;
     }
 
     public int getBookingID()
@@ -42,14 +46,20 @@ public class Booking
         this.screeningID = screeningID;
     }
 
-    public int getCustomerID()
-    {
-        return customerID;
+    public String getFName() {
+        return fName;
     }
 
-    public void setCustomerID(int customerID)
-    {
-        this.customerID = customerID;
+    public void setFName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getLName() {
+        return lName;
+    }
+
+    public void setLName(String lName) {
+        this.lName = lName;
     }
 
     public int getRow()
@@ -72,26 +82,37 @@ public class Booking
         this.seat = seat;
     }
 
-    public int getStatus()
+    public String getBookingStatus()
     {
-        return status;
+        return bookingStatus;
     }
 
-    public void setStatus(int status)
+    public void setBookingStatus(String bookingStatus)
     {
-        this.status = status;
+        this.bookingStatus = bookingStatus;
+    }
+
+    public Long getShowtime() {
+        return showtime;
+    }
+
+    public void setShowtime(Long showtime) {
+        this.showtime = showtime;
     }
 
     //Info om Bookingen
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Booking{" +
                 "bookingID=" + bookingID +
                 ", screeningID=" + screeningID +
-                ", customerID=" + customerID +
+                ", fName=" + fName +
+                ", lName=" + lName +
                 ", row=" + row +
                 ", seat=" + seat +
-                ", status=" + status +
+                ", bookingStatus=" + bookingStatus +
+                ", showtime=" + showtime +
                 '}';
     }
 }

@@ -10,11 +10,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 /**
  * Created by Hans on 23-02-2016.
  */
 public class Home extends Application
 {
+    static DB db = DB.getInstance();
 
     Double sceneWidth = 1024.0;
     Double sceneHeight = 768.0;
@@ -22,6 +25,7 @@ public class Home extends Application
     public static void main(String[] args)
     {
         launch(args);
+        //db.printBookings();
     }
 
     public void start(Stage stage) {
@@ -36,9 +40,10 @@ public class Home extends Application
         Button buttonPlaceHolder = new Button("Placeholder");
         Button buttonAddMovie = new Button("Add Movie");
         Button buttonAddScreening = new Button("Add Screening");
+        Button testingBookingOverview = new Button("Testing Booking Overview");
 
         // INDSÆT KNAPPER I TOP BAR
-        topBar.getChildren().addAll(buttonBooking, buttonAddMovie, buttonAddScreening);
+        topBar.getChildren().addAll(buttonBooking, buttonAddMovie, buttonAddScreening, testingBookingOverview);
 
         // SCROLL PANE
         ScrollPane scrollPane = new ScrollPane();
@@ -62,13 +67,20 @@ public class Home extends Application
         buttonBooking.setOnMouseClicked(e -> {
             pane.setCenter(AddBookingView.getView());
         });
+        testingBookingOverview.setOnMouseClicked(e -> {
+            try {
+                pane.setCenter(BookingOverview.getView());
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        });
 
-        DB db = DB.getInstance();
         db.getMoviesOnLaunch();
 
         Scene scene = new Scene(pane, sceneWidth, sceneHeight);
         scene.getStylesheets().add("KinoStyle.css");
         stage.setScene(scene);
         stage.show();
+
     }
 }
