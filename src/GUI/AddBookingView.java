@@ -6,9 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-/**
- * Created by Hans on 24-02-2016.
- */
+
 public class AddBookingView
 {
     public static VBox getView() {

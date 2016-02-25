@@ -9,9 +9,7 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 
-/**
- * Created by Claes Gottlieb on 24/02/16.
- */
+
 public class BookScreeningController
 {
 

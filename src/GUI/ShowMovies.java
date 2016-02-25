@@ -11,9 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-/**
- * Created by Hans on 23-02-2016.
- */
+
 public class ShowMovies
 {
 

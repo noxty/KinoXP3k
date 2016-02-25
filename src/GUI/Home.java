@@ -10,9 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-/**
- * Created by Hans on 23-02-2016.
- */
+
 public class Home extends Application
 {
 

@@ -15,9 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * Created by Hans on 24-02-2016.
- */
+
 public class AddMovieView
 {
 

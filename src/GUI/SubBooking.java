@@ -5,9 +5,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 
-/**
- * Created by Daniel on 25-02-2016.
- */
+
 public class SubBooking
 {
     public static BorderPane subWindow()
