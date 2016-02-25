@@ -56,7 +56,7 @@ public class Home extends Application
 
 
         buttonHome.setOnMouseClicked(e -> {
-            pane.setCenter(scrollPane);
+            pane.setCenter(ShowMovies.getHBox());
         });
 
         buttonMovie.setOnMouseClicked(e -> {
@@ -65,9 +65,6 @@ public class Home extends Application
         buttonBooking.setOnMouseClicked(e -> {
             pane.setCenter(SubBooking.subWindow());
         });
-
-        DB db = DB.getInstance();
-        db.getMoviesOnLaunch();
 
         Scene scene = new Scene(pane, sceneWidth, sceneHeight);
         scene.getStylesheets().add("KinoStyle.css");

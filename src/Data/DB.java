@@ -139,10 +139,11 @@ public class DB
 
     public ObservableList<Movie> getMoviesOnLaunch()
     {
-        movieList = FXCollections.observableArrayList();
 
         //Statement stmt;
         ResultSet rs;
+
+        movieList = FXCollections.observableArrayList();
 
         try
         {

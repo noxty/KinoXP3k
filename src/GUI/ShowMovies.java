@@ -36,6 +36,9 @@ public class ShowMovies
         layout.setAlignment(Pos.CENTER);
         layout.getStyleClass().add("BookingHBox");
 
+        DB db = DB.getInstance();
+        ObservableList<Movie> movies = db.getMoviesOnLaunch();
+
         int temporarySize = 12;
         int gap = 10;
 
@@ -55,13 +58,11 @@ public class ShowMovies
         row.setAlignment(rowAlignment);
         column.setAlignment(Pos.CENTER);
 
-        DB db = DB.getInstance();
-
-        ObservableList<Movie> movies = db.getMovies();
         int i = 0;
+
         for (Movie m : movies)
         {
-
+            System.out.println(m.getTitle());
             VBox movieBox = new VBox();
 
 
@@ -112,7 +113,7 @@ public class ShowMovies
             //movieInfoRightBox.getChildren().addAll(movieLabelDescription, movieTextDescription);
 
             moviePosterBox.getChildren().add(movieTitle);
-            moviePosterBox.setAlignment(Pos.BOTTOM_LEFT);
+            //moviePosterBox.setAlignment(Pos.BOTTOM_LEFT);
 
             moviePosterBox.setPrefSize(movieBoxWidth, movieBoxHeight);
             moviePosterBox.setStyle("-fx-background-image: url("+m.getPoster()+")");
@@ -132,48 +133,17 @@ public class ShowMovies
                 row = new HBox(gap);
                 row.setAlignment(rowAlignment);
             }
-
-            if (i == temporarySize-1) {
-                if (i % moviesPerRow != 0) {
-                    column.getChildren().add(row);
-                }
-            }
             i++;
         }
 
-        layout.getChildren().add(column);
-
-        /*
-        for (dbSubKategori s : data)
-        {
-
-            Button current = new Button(s.getNavn());
-            current.getStyleClass().add("button-middle");
-            current.setOnAction(e -> {
-                Sunbeam2.setMain(SubFiler(s.getNavn(), _title, _id, s.getSubId()));
-            });
-
-            // Vi vil gerne vise knapperne i rækker, med max 3 i én række.
-            // Nedenunder kigger den på hvor mange objekter den allerede har sat ind
-            // og laver en ny HBox (ny række) ved hvert 3. objekt
-
-            row.getChildren().add(current);
-            if (iterator % 3 == 2)
-            {
-                column.getChildren().add(row);
-                row = new HBox(gap);
-                row.setAlignment(Pos.CENTER);
-            }
-
-            iterator++;
-        }
-
-        if (iterator % 3 != 0)
-        {
+        if (i % moviesPerRow != 0) {
             column.getChildren().add(row);
         }
-        */
 
+
+        System.out.println(movies);
+
+        layout.getChildren().add(column);
 
         return layout;
     }
