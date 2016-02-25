@@ -12,19 +12,10 @@ import java.util.LinkedHashMap;
 
 public class CreateMovieController
 {
-    String title;
-    String description;
-    int ageRestriction;
-    int playingtime;
-    long premiere;
-    boolean status;
-    double price;
-
-/*
-    public ObservableList<Movie> getMovie() throws SQLException
+    public ObservableList<Movie> createMovie(int id, String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price) throws SQLException
     {
         ObservableList<Movie> movies = FXCollections.observableArrayList();
-        Movie movie = new Movie(title, description, ageRestriction, playingtime, premiere, status, price);
+        Movie movie = new Movie(id, title, description, ageRestriction, playingtime, premiere, status, price);
         DB db = DB.getInstance();
         LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>();
         lhm.put(1, "0");
@@ -36,8 +27,11 @@ public class CreateMovieController
         lhm.put(7, Boolean.toString(movie.isStatus()));
         lhm.put(8, Double.toString(movie.getPrice()));
 
+        db.executeQuery("INSERT INTO Movie VALUES(?,?,?,?,?,?,?,?)",lhm);
+
         movies.add(new Movie
-                (   movie.getTitle(),
+                     (  movie.getId(),
+                        movie.getTitle(),
                         movie.getDescription(),
                         movie.getAgeRestriction(),
                         movie.getPlayingtime(),
@@ -45,10 +39,8 @@ public class CreateMovieController
                         movie.isStatus(),
                         movie.getPrice()));
 
-        db.executeQuery("INSERT INTO Movie VALUES(?,?,?,?,?,?,?,?)",lhm);
-
-        return getMovie();
+        return createMovie(id, title, description, ageRestriction, playingtime, premiere, status, price);
 
     }
-    */
+
 }
