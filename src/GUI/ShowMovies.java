@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 /**
  * Created by Hans on 23-02-2016.
  */
-public class BookingView
+public class ShowMovies
 {
 
     private static Double movieBoxWidth = 300.0;

@@ -30,37 +30,42 @@ public class Home extends Application
         // TOP BAR
         HBox topBar = new HBox();
 
+
+
         // BUTTONS FOR TOP BAR
         Button buttonBooking = new Button("Bookings");
         Button buttonOpretForestiling = new Button("Opret Forestilling");
         Button buttonPlaceHolder = new Button("Placeholder");
-        Button buttonAddMovie = new Button("Add Movie");
-        Button buttonAddScreening = new Button("Add Screening");
+        Button buttonMovie = new Button("Movie");
+        Button buttonScreening = new Button("Screening");
+        Button buttonHome = new Button("Home");
 
         // INDSÆT KNAPPER I TOP BAR
-        topBar.getChildren().addAll(buttonBooking, buttonAddMovie, buttonAddScreening);
+        topBar.getChildren().addAll(buttonHome, buttonBooking, buttonMovie, buttonScreening);
 
         // SCROLL PANE
         ScrollPane scrollPane = new ScrollPane();
 
 
         scrollPane.setFitToWidth(true);
-        scrollPane.setContent(HomeView.getView());
+        scrollPane.setContent(ShowMovies.getHBox());
 
         // INDSÆT I BORDERPANE
         pane.setTop(topBar);
         pane.setCenter(scrollPane);
 
         // KONTROL AF KNAPPER
-        buttonAddScreening.setOnMouseClicked(e -> {
-            pane.setCenter(ScreeningView.getView());
+
+
+        buttonHome.setOnMouseClicked(e -> {
+            pane.setCenter(scrollPane);
         });
 
-        buttonAddMovie.setOnMouseClicked(e -> {
-            pane.setCenter(AddMovieView.getView());
+        buttonMovie.setOnMouseClicked(e -> {
+            pane.setCenter(SubMovies.subWindow());
         });
         buttonBooking.setOnMouseClicked(e -> {
-            pane.setCenter(AddBookingView.getView());
+            pane.setCenter(SubBooking.subWindow());
         });
 
         DB db = DB.getInstance();
