@@ -6,9 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-/**
- * Created by Hans on 24-02-2016.
- */
+
 public class AddBookingView
 {
     public static VBox getView() {
@@ -29,23 +27,34 @@ public class AddBookingView
         // Tid, antal sæder, sal, sæde numre;
 
         Label labelDate = new Label("Date");
-        Label labelSeats = new Label("Seats");
         Label labelTheater = new Label("Theater");
         Label labelPickSeats = new Label("Valgte Sæder");
 
-        ComboBox<Integer> comboSeats = new ComboBox<>();
-        comboSeats.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8);
-
         ComboBox<String> comboTheater = new ComboBox<>();
-        comboTheater.getItems().addAll("Den Store Sal", "Den Lille Sal");
+        comboTheater.getItems().addAll("Store Sal", "Lille Sal");
 
-        TextField fieldPickedSeats = new TextField("Placeholder for valgte sæder");
+
+        HBox fieldPickedSeats = new HBox();
+
+        comboTheater.setOnAction(event -> {
+            if(comboTheater.getValue().toString().equals("Store Sal"))
+            {
+                fieldPickedSeats.getChildren().clear();
+                fieldPickedSeats.getChildren().addAll(TheatreMap.bigTheatre());
+            }
+            else if(comboTheater.getValue().toString().equals("Lille Sal"))
+            {
+                fieldPickedSeats.getChildren().clear();
+                fieldPickedSeats.getChildren().addAll(TheatreMap.smallTheatre());
+            }
+        });
+
+
+        fieldPickedSeats.getChildren().addAll(TheatreMap.bigTheatre());
 
 
         layoutGrid.add(labelDate, 0, 0);
         layoutGrid.add(DateBox.getDateBox(), 1, 0);
-        layoutGrid.add(labelSeats, 0, 1);
-        layoutGrid.add(comboSeats, 1, 1);
         layoutGrid.add(labelTheater, 0, 2);
         layoutGrid.add(comboTheater, 1, 2);
         layoutGrid.add(labelPickSeats, 0, 3);

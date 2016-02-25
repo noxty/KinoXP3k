@@ -1,42 +1,46 @@
 package Classes;
 
+
 public abstract class Person
 {
-    private String fName;
-    private String lName;
-    private int phoneNo;
+    private String firstName;
+    private String lastName;
+    private String phone;
 
-    public Person(String fName, String lName, int phoneNo)
+    public Person(String firstName, String lastName, String phone)
     {
-        this.fName = fName;
-        this.lName = lName;
-        this.phoneNo = phoneNo;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
     }
 
-    Person() {
+    public String getFirstName()
+    {
+        return firstName;
     }
 
-    public String getfName() {
-        return fName;
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
+    public String getLastName()
+    {
+        return lastName;
     }
 
-    public String getlName() {
-        return lName;
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
     }
 
-    public void setlName(String lName) {
-        this.lName = lName;
+    public String getPhone()
+    {
+        return phone;
     }
 
-    public int getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(int phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
     }
 }

@@ -10,9 +10,6 @@ import javafx.scene.layout.VBox;
 import java.util.Calendar;
 
 
-/**
- * Created by Daniel on 24-02-2016.
- */
 public class ScreeningView
 {
     public static VBox getView()

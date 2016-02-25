@@ -5,9 +5,7 @@ import Data.DB;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-/**
- * Created by oelsner on 23/02/16.
- */
+
 public class Test
 {
     public static void main(String[] args)

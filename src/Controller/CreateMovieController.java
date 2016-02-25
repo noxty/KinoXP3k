@@ -7,40 +7,59 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedHashMap;
 
 public class CreateMovieController
 {
-    public ObservableList<Movie> createMovie(int id, String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price) throws SQLException
+    private static CreateMovieController Instance = new CreateMovieController();
+    public static CreateMovieController getInstance()
     {
-        ObservableList<Movie> movies = FXCollections.observableArrayList();
-        Movie movie = new Movie(id, title, description, ageRestriction, playingtime, premiere, status, price);
-        DB db = DB.getInstance();
-        LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>();
-        lhm.put(1, "0");
-        lhm.put(2, movie.getTitle());
-        lhm.put(3, movie.getDescription());
-        lhm.put(4, Integer.toString(movie.getAgeRestriction()));
-        lhm.put(5, Integer.toString(movie.getPlayingtime()));
-        lhm.put(6, Long.toString(movie.getPremiere()));
-        lhm.put(7, Boolean.toString(movie.isStatus()));
-        lhm.put(8, Double.toString(movie.getPrice()));
-
-        db.executeQuery("INSERT INTO Movie VALUES(?,?,?,?,?,?,?,?)",lhm);
-
-        movies.add(new Movie
-                     (  movie.getId(),
-                        movie.getTitle(),
-                        movie.getDescription(),
-                        movie.getAgeRestriction(),
-                        movie.getPlayingtime(),
-                        movie.getPremiere(),
-                        movie.isStatus(),
-                        movie.getPrice()));
-
-        return createMovie(id, title, description, ageRestriction, playingtime, premiere, status, price);
-
+        return Instance;
     }
 
+    public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price, String poster)
+    {
+        DB db = DB.getInstance();
+
+        try
+        {
+            PreparedStatement prepStmt;
+
+            String sqlString = "INSERT INTO movie(title, description, ageRestriction, playingTime, premiere, movieStatus, price, poster) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
+            prepStmt = db.getConnection().prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
+
+            prepStmt.setString(1, title);
+            prepStmt.setString(2, description);
+            prepStmt.setInt(3, ageRestriction);
+            prepStmt.setInt(4, playingTime);
+            prepStmt.setLong(5, premiere);
+            prepStmt.setBoolean(6, movieStatus);
+            prepStmt.setDouble(7, price);
+            prepStmt.setString(8, poster);
+
+            prepStmt.executeUpdate();
+
+            ResultSet rs = prepStmt.getGeneratedKeys();
+            int id = 0;
+            if (rs.next())
+            {
+                id = rs.getInt(1);
+            }
+
+            addMovie(new Movie(id, title, description, ageRestriction, playingTime, premiere, movieStatus, price, poster));
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void addMovie(Movie m) {
+        GetMovieController.getMovies().add(m);
+    }
 }
