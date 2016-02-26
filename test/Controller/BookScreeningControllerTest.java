@@ -21,5 +21,6 @@ public class BookScreeningControllerTest extends TestCase
     public final void testCreateBooking() throws Exception
     {
 
+
     }
 }
