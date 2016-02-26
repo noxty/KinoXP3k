@@ -10,6 +10,7 @@ public class TimeTest
         try
         {
             for (int i = 0; i < 7; i++) {
+                System.out.println(TimeController.getTimeOfDay("15:00", i));
                 System.out.println(TimeController.getDateFromTS(TimeController.getTimeOfDay("15:00", i)));
                 System.out.println(TimeController.getDateFromTS(TimeController.getTimeOfDay("18:00", i)));
                 System.out.println(TimeController.getDateFromTS(TimeController.getTimeOfDay("21:00", i)));

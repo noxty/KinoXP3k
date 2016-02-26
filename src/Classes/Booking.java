@@ -12,9 +12,9 @@ public class Booking
     private int row;
     private int seat;
     private String bookingStatus;
-    private Long showtime;
+    private String showtime;
 
-    public Booking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, long showtime)
+    public Booking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, String showtime)
     {
         this.bookingID = bookingID;
         this.screeningID = screeningID;
@@ -92,11 +92,11 @@ public class Booking
         this.bookingStatus = bookingStatus;
     }
 
-    public long getShowtime() {
+    public String getShowtime() {
         return showtime;
     }
 
-    public void setShowtime(long showtime)
+    public void setShowtime(String showtime)
     {
         this.showtime = showtime;
     }

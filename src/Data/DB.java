@@ -2,6 +2,7 @@ package Data;
 import Classes.Booking;
 import Classes.Movie;
 import Classes.Screening;
+import Controller.TimeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -100,7 +101,8 @@ public class DB
         {
             while (resultSet.next())
             {
-                bookings.add(new Booking(resultSet.getInt("bookingID"), resultSet.getInt("screeningID"), resultSet.getString("fname"), resultSet.getString("lname"), resultSet.getInt("row"), resultSet.getInt("seat"), resultSet.getString("bookingStatus"), resultSet.getLong("showtime")));
+                System.out.println();
+                bookings.add(new Booking(resultSet.getInt("bookingID"), resultSet.getInt("screeningID"), resultSet.getString("fname"), resultSet.getString("lname"), resultSet.getInt("row"), resultSet.getInt("seat"), resultSet.getString("bookingStatus"), TimeController.getDateFromTS(resultSet.getLong("showtime"))));
             }
         }
 

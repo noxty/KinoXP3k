@@ -13,7 +13,7 @@ public class BookingController
     ObservableList<Booking> bookings = FXCollections.observableArrayList();
     DB db = DB.getInstance();
 
-    public ObservableList<Booking> createBooking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, Long showtime) throws SQLException
+    public ObservableList<Booking> createBooking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, String showtime) throws SQLException
     {
         Booking booking = new Booking(bookingID, screeningID, fName, lName, row, seat, bookingStatus, showtime);
         LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>();
@@ -25,7 +25,7 @@ public class BookingController
         lhm.put(5, Integer.toString(booking.getRow()));
         lhm.put(6, Integer.toString(booking.getSeat()));
         lhm.put(7, booking.getBookingStatus());
-        lhm.put(8, String.valueOf(booking.getShowtime()));
+        lhm.put(8, booking.getShowtime());
 
         db.executeQuery("INSERT INTO Booking VALUES(?,?,?,?,?,?,?,?)", lhm);
 

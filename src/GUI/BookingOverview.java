@@ -61,7 +61,7 @@ public class BookingOverview
         tcSeats.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("seat"));
 
         tcShowtime = new TableColumn("Date/Time");
-        tcShowtime.setCellValueFactory(new PropertyValueFactory<Booking, Long>("showtime"));
+        tcShowtime.setCellValueFactory(new PropertyValueFactory<Booking, String>("showtime"));
 
         tcBookingStatus = new TableColumn("Booking Status");
         tcBookingStatus.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingStatus"));
