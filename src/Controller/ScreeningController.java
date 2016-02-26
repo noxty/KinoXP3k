@@ -6,6 +6,7 @@ import Data.DB;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.ParseException;
 
 /**
  * Created by Claes Gottlieb on 26/02/16.
@@ -21,8 +22,6 @@ public class ScreeningController
     DB db = DB.getInstance();
     public void createScreening(int screeningID, int movieID, int theatreID, long showtime)
     {
-
-
         try
         {
             PreparedStatement prepStmt;
@@ -55,5 +54,17 @@ public class ScreeningController
 
     public void addScreening(Screening s) {
         db.getScreenings().add(s);
+    }
+    public void testScreening()
+    {
+        try
+        {
+            // denne laver en forestilling klokken 15:00 idag med screeningID 1, movieId 1, theatreID 1
+            createScreening(1,1,1,TimeController.getTimeOfDay("15:00", 0));
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
