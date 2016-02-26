@@ -31,8 +31,8 @@ public class BookingOverview
     static HBox hBoxSearch;
     static VBox vBoxBookingOverview;
 
-    // Following method assembles the tableView for bookings.
-    // The body contains functions for searching through- and deleting bookings.
+    // Following method assembles the tableView for bookings
+    // The body contains functions for searching through- and deleting bookings
 
     public static VBox getView()
     {
