@@ -49,7 +49,7 @@ public class BookingOverview
         tcScreeningID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("screeningID"));
 
         tcFName = new TableColumn("First Name");
-        tcFName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fName"));
+         tcFName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fName"));
 
         tcLName = new TableColumn("Last Name");
         tcLName.setCellValueFactory(new PropertyValueFactory<Booking, String>("lName"));
@@ -65,6 +65,8 @@ public class BookingOverview
 
         tcBookingStatus = new TableColumn("Booking Status");
         tcBookingStatus.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingStatus"));
+
+        tableViewBooking.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreeningID, tcRow, tcSeats, tcShowtime, tcBookingStatus);
 
         // Search Function
         textFieldSearch = new TextField();

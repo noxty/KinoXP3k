@@ -42,10 +42,12 @@ public class Test
 
         //
 
+        /*
         for (int i = 0; i < movies.size(); i++)
         {
             System.out.println(movies.get(i).getTitle());
         }
+        */
 
        // System.out.println(movies.get(0).getTitle());
 

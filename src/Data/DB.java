@@ -111,6 +111,9 @@ public class DB
         {
             e.printStackTrace();
         }
+
+        System.out.println("Printing bookings");
+        System.out.println(bookings);
         return bookings;
     }
 
