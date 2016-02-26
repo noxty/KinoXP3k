@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 /*
-    Screening(screeningID, movieID, theatreID, timestamp)
+    Screening(screeningID, movieID, theatreID, showtime)
  */
 
 public class Screening
@@ -12,14 +12,14 @@ public class Screening
     private int screeningID;
     private int movieID;
     private int theatreID;
-    private long timestamp;
+    private long showtime;
 
-    public Screening(int screeningID, int movieID, int theatreID, long timestamp)
+    public Screening(int screeningID, int movieID, int theatreID, long showtime)
     {
         this.screeningID = screeningID;
         this.movieID = movieID;
         this.theatreID = theatreID;
-        this.timestamp = timestamp;
+        this.showtime = showtime;
     }
 
     public int getScreeningID()
@@ -52,14 +52,14 @@ public class Screening
         this.theatreID = theatreID;
     }
 
-    public long getTimestamp()
+    public long getShowtime()
     {
-        return timestamp;
+        return showtime;
     }
 
-    public void setTimestamp(long timestamp)
+    public void setShowtime(long showtime)
     {
-        this.timestamp = timestamp;
+        this.showtime = showtime;
     }
 }
 

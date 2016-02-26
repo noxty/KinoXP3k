@@ -2,8 +2,8 @@ package Classes;
 
 public class Employee extends Person
 {
-    public Employee(String firstName, String lastName, String phone)
+    public Employee(String firstName, String lastName, int phoneNo)
     {
-        super(firstName, lastName, phone);
+        super(firstName, lastName, phoneNo);
     }
 }

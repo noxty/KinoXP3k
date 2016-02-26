@@ -1,5 +1,5 @@
 package Data;
-
+import Classes.Booking;
 import Classes.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,88 +13,44 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 public class DB
 {
-    private static DB Instance = new DB();
-    private static Connection conn;
-    private PreparedStatement prepStmt;
-    private Statement stmt;
-    private ResultSet rs;
+    //Hvad er der med denne???
+    static private DB Instance = new DB();
 
+    // Global Instances
+    private Connection connection;
+    private PreparedStatement preparedStatement;
+    private Statement statement;
+    private ResultSet resultSet;
 
+    // Instances for searchBookingsByPhoneNo()
+    private List<Booking> bookings;
+
+    // DB Constructor
     private DB()
     {
         try
         {
             String url = "jdbc:mysql://lessthan3.xyz/kino";
-            conn = DriverManager.getConnection(url, "kino", "kinoxp");
-            stmt = conn.createStatement();
+            connection = DriverManager.getConnection(url, "kino", "kinoxp");
+            statement = connection.createStatement();
         }
+
         catch (Exception e)
         {
             e.printStackTrace();
         }
     }
 
-    public Connection getConnection() {
-        return conn;
+    public Connection getConnection()
+    {
+        return connection;
     }
 
     public static DB getInstance()
     {
         return Instance;
-    }
-    //Udfører en Query der ikke er en SELECT
-    public boolean executeQuery(String sqlString) throws SQLException
-    {
-        stmt.executeUpdate(sqlString);
-        return true;
-    }
-    //Udfører en Query der ikke er en SELECT, med parametre
-    public boolean executeQuery(String sqlString, Map<Integer, String> cmdParameters) throws SQLException
-    {
-        prepStmt = conn.prepareStatement(sqlString);
-        for (Map.Entry<Integer, String> entry: cmdParameters.entrySet())
-        {
-            prepStmt.setString(entry.getKey(), entry.getValue());
-        }
-        prepStmt.executeUpdate();
-
-        return true;
-    }
-    //Henter et query der ER en select
-    public ResultSet getResult(String sqlString) throws SQLException
-    {
-        stmt.executeQuery(sqlString);
-        rs = stmt.getResultSet();
-        return rs;
-    }
-    //Henter et query der ER en select, med parametre
-    public ResultSet getResult(String sqlString, Map<Integer, String> cmdParameters) throws SQLException
-    {
-        prepStmt = conn.prepareStatement(sqlString);
-        for (Map.Entry<Integer, String> entry: cmdParameters.entrySet())
-        {
-            prepStmt.setString(entry.getKey(), entry.getValue());
-        }
-        prepStmt.executeQuery();
-        return rs;
-    }
-    //kan sikkert gøres bedre og er dum. Blivre kun brugt en enkelt gang fordi det er lavet dumt
-    public static ResultSet secondaryResultSet(String sqlString)
-    {
-        try
-        {
-            Statement STMT = conn.createStatement();
-            STMT.executeQuery(sqlString);
-            return STMT.getResultSet();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public ArrayList<Movie> getScreenings()
@@ -107,7 +63,7 @@ public class DB
         try
         {
             String sqlString = "SELECT * FROM screening";
-            rs = stmt.executeQuery(sqlString);
+            rs = statement.executeQuery(sqlString);
 
             while (rs.next())
             {
@@ -118,7 +74,127 @@ public class DB
         {
             e.printStackTrace();
         }
-
         return movies;
+    }
+
+
+
+
+
+    public List<Booking> searchBookingsByPhoneNo(String phoneNoInput) throws SQLException
+    {
+        String sqlString =
+
+                "SELECT booking.bookingID, booking.screeningID, " +
+                "customer.fname, customer.lname, booking.row, booking.seat, booking.bookingStatus, " +
+                "screening.showtime " +
+                "FROM booking " +
+                "JOIN customer " +
+                "ON booking.customerID = customer.customerID " +
+                "JOIN screening " +
+                "ON booking.screeningID = screening.screeningID " +
+                "WHERE phoneNo = '"+ phoneNoInput +"'";
+
+        resultSet = statement.executeQuery(sqlString);
+
+        bookings = new ArrayList<>();
+
+        try
+        {
+            while (resultSet.next())
+            {
+                bookings.add(new Booking(resultSet.getInt("bookingID"), resultSet.getInt("screeningID"), resultSet.getString("fname"), resultSet.getString("lname"), resultSet.getInt("row"), resultSet.getInt("seat"), resultSet.getString("bookingStatus"), resultSet.getLong("showtime")));
+            }
+        }
+
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return bookings;
+    }
+
+    public void deleteBooking(Booking selectedBooking) throws ClassNotFoundException
+    {
+        try
+        {
+            String sqlString = "DELETE FROM booking WHERE bookingID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlString);
+
+            int booking = selectedBooking.getBookingID();
+
+            preparedStatement.setInt(1, booking);
+            preparedStatement.executeUpdate();
+        }
+
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+    // Udfører en Query, som ikke er et SELECT, UDEN parametre
+    public boolean executeQuery(String sqlString) throws SQLException
+    {
+        statement.executeUpdate(sqlString);
+        return true;
+    }
+
+    //Udfører en Query, som ikke er en SELECT, MED parametre
+    public boolean executeQuery(String sqlString, Map<Integer, String> cmdParameters) throws SQLException
+    {
+        preparedStatement = connection.prepareStatement(sqlString);
+
+        for (Map.Entry<Integer, String> entry: cmdParameters.entrySet())
+        {
+            preparedStatement.setString(entry.getKey(), entry.getValue());
+        }
+
+        preparedStatement.executeUpdate();
+        return true;
+    }
+
+    //Henter et query der ER en SELECT
+    public ResultSet getResult(String sqlString) throws SQLException
+    {
+        statement.executeQuery(sqlString);
+        resultSet = statement.getResultSet();
+        return resultSet;
+    }
+    //Henter et query der ER en select, med parametre
+    public ResultSet getResult(String sqlString, Map<Integer, String> cmdParameters) throws SQLException
+    {
+        preparedStatement = connection.prepareStatement(sqlString);
+        for (Map.Entry<Integer, String> entry: cmdParameters.entrySet())
+        {
+            preparedStatement.setString(entry.getKey(), entry.getValue());
+        }
+        preparedStatement.executeQuery();
+        return resultSet;
+    }
+
+    //Kan sikkert gøres bedre og er dum. Bliver kun brugt en enkelt gang, da det er lavet dumt.
+    public ResultSet secondaryResultSet(String sqlString)
+    {
+        try
+        {
+            statement = connection.createStatement();
+            statement.executeQuery(sqlString);
+
+            return statement.getResultSet();
+        }
+
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
