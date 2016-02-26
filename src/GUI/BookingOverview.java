@@ -1,112 +1,136 @@
 package GUI;
-
 import Classes.Booking;
-import Classes.Person;
 import Data.DB;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
+import javafx.collections.*;
+import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 
-import java.awt.print.Book;
 import java.sql.SQLException;
 
 public class BookingOverview
 {
+    // TableView Instance
+    static TableView tableViewBooking;
 
-    public static VBox getView() throws SQLException
+    // TableColumns Instances
+    static TableColumn tcBookingID, tcScreeningID, tcFName, tcLName, tcRow, tcSeats, tcShowtime, tcBookingStatus;
+
+    // TextField Instance
+    static TextField textFieldSearch;
+
+    // Button Instance
+    static Button buttonFind;
+
+    // List Instance
+    static ObservableList<Booking> observableListBooking;
+
+    //HBoxes & VBoxes
+    static HBox hBoxSearch;
+    static VBox vBoxBookingOverview;
+
+    // Following method assembles the tableView for bookings.
+    // The body contains functions for searching through- and deleting bookings.
+
+    public static VBox getView()
     {
+        // TableView "tableBookings"
+        tableViewBooking = new TableView();
+        tableViewBooking.setEditable(true);
+        tableViewBooking.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreeningID, tcRow, tcSeats, tcShowtime, tcBookingStatus);
 
-        TableView tableBookings = new TableView();
+        // TableColumns (tc)
+        tcBookingID = new TableColumn("Booking ID");
+        tcBookingID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
 
-        TextField textFieldSearch = new TextField("Insert phone number");
-        Button buttonFind = new Button("Find");
-        buttonFind.setOnAction(e->
+        tcScreeningID = new TableColumn("Screening ID");
+        tcScreeningID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("screeningID"));
+
+        tcFName = new TableColumn("First Name");
+        tcFName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fName"));
+
+        tcLName = new TableColumn("Last Name");
+        tcLName.setCellValueFactory(new PropertyValueFactory<Booking, String>("lName"));
+
+        tcRow = new TableColumn("Row");
+        tcRow.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("row"));
+
+        tcSeats = new TableColumn("Seat");
+        tcSeats.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("seat"));
+
+        tcShowtime = new TableColumn("Date/Time");
+        tcShowtime.setCellValueFactory(new PropertyValueFactory<Booking, Long>("showtime"));
+
+        tcBookingStatus = new TableColumn("Booking Status");
+        tcBookingStatus.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingStatus"));
+
+        // Search Function
+        textFieldSearch = new TextField();
+        textFieldSearch.setPromptText("Insert phone number..");
+
+        buttonFind = new Button("Find");
+        buttonFind.setOnAction(actionEvent ->
         {
             try
             {
-                ObservableList<Booking> observableListBookings = FXCollections.observableArrayList(DB.getInstance().getBookingByPhoneNo(textFieldSearch.getText()));
-                //System.out.println(observableListBookings.get(0).getfName());
-                tableBookings.setItems(observableListBookings);
-            } catch (SQLException e1)
+                observableListBooking = FXCollections.observableArrayList(DB.getInstance().searchBookingsByPhoneNo(textFieldSearch.getText()));
+                tableViewBooking.setItems(observableListBooking);
+            }
+
+            catch (SQLException e)
             {
-                e1.printStackTrace();
+                e.printStackTrace();
             }
         });
 
-
-        Label labelBookingOverview = new Label("Booking Overview");
-
-
-        HBox hBoxSearchByPhoneNumber = new HBox(textFieldSearch, buttonFind);
-        hBoxSearchByPhoneNumber.setPadding(new Insets(10, 10, 10, 10));
-        hBoxSearchByPhoneNumber.setSpacing(5);
-
-        tableBookings.setEditable(true);
-
-        TableColumn tcBookingID = new TableColumn("BookingID");
-        tcBookingID.setCellValueFactory(
-                new PropertyValueFactory<Booking, Integer>("bookingID"));
-
-        TableColumn tcScreening = new TableColumn("ScreeningID");
-        tcScreening.setCellValueFactory(
-                new PropertyValueFactory<Booking, Integer>("screeningID"));
-
-        TableColumn tcFName = new TableColumn("First Name");
-        tcFName.setCellValueFactory(
-                new PropertyValueFactory<Booking, String>("fName"));
-
-        TableColumn tcLName = new TableColumn("Last Name");
-        tcLName.setCellValueFactory(
-                new PropertyValueFactory<Booking, String>("lName"));
-
-        TableColumn tcRow = new TableColumn("row");
-        tcRow.setCellValueFactory(
-                new PropertyValueFactory<Booking, Integer>("row"));
-
-        TableColumn tcSeats = new TableColumn("seat");
-        tcSeats.setCellValueFactory(
-                new PropertyValueFactory<Booking, Integer>("seat"));
-
-        TableColumn tcShowtime = new TableColumn("Date/Time");
-        tcShowtime.setCellValueFactory(
-                new PropertyValueFactory<Booking, Long>("showtime"));
-
-        TableColumn tcBookingStatus = new TableColumn("Booking Status");
-        tcBookingStatus.setCellValueFactory(
-                new PropertyValueFactory<Booking, String>("bookingStatus"));
-
-
+        // Delete Function
         Button buttonDelete = new Button("Delete");
-        buttonDelete.setOnAction(e ->
+        buttonDelete.setOnAction(actionEvent ->
         {
-            Booking ix = (Booking) tableBookings.getSelectionModel().getSelectedItem();
+            Booking booking = (Booking) tableViewBooking.getSelectionModel().getSelectedItem();
 
-            try {
-                DB.getInstance().deleteBooking(ix);
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
+            try
+            {
+                DB.getInstance().deleteBooking(booking);
+                updateTableview();
             }
 
-            tableBookings.getColumns().clear();
-            tableBookings.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreening, tcRow, tcSeats, tcShowtime, tcBookingStatus);
-
-            ObservableList<Booking> list = null;
-            try {
-                list = FXCollections.observableArrayList(DB.getInstance().getBookingByPhoneNo(textFieldSearch.getText()));
-            } catch (SQLException e1) {
-                e1.printStackTrace();
+            catch (ClassNotFoundException e)
+            {
+                e.printStackTrace();
             }
-            tableBookings.setItems(list);
         });
 
-        tableBookings.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreening, tcRow, tcSeats, tcShowtime, tcBookingStatus);
+        // Booking Overview Layout
+        hBoxSearch = new HBox(textFieldSearch, buttonFind);
+        hBoxSearch.setPadding(new Insets(10, 10, 10, 10));
+        hBoxSearch.setSpacing(5);
 
-        VBox vBoxBookingOverview = new VBox(labelBookingOverview, hBoxSearchByPhoneNumber, tableBookings, buttonDelete);
+        vBoxBookingOverview = new VBox(hBoxSearch, tableViewBooking, buttonDelete);
+        vBoxBookingOverview.setPadding(new Insets(10, 10, 10, 10));
+        vBoxBookingOverview.setSpacing(5);
 
         return vBoxBookingOverview;
+    }
+
+    // Update TableView
+    public static void updateTableview()
+    {
+        tableViewBooking.getColumns().clear();
+        tableViewBooking.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreeningID, tcRow, tcSeats, tcShowtime, tcBookingStatus);
+        observableListBooking = null;
+
+        try
+        {
+            observableListBooking = FXCollections.observableArrayList(DB.getInstance().searchBookingsByPhoneNo(textFieldSearch.getText()));
+        }
+
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        tableViewBooking.setItems(observableListBooking);
     }
 }
