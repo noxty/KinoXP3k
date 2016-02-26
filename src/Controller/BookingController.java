@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 
-public class BookScreeningController
+public class BookingController
 {
     ObservableList<Booking> bookings = FXCollections.observableArrayList();
     DB db = DB.getInstance();
