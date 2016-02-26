@@ -1,6 +1,7 @@
 package Data;
 import Classes.Booking;
 import Classes.Movie;
+import Classes.Screening;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -53,9 +54,9 @@ public class DB
         return Instance;
     }
 
-    public ArrayList<Movie> getScreenings()
+    public ObservableList<Screening> getScreenings()
     {
-        ArrayList<Movie> movies = new ArrayList<Movie>();
+        ObservableList<Screening> movies =  FXCollections.observableArrayList();
 
         //Statement stmt;
         ResultSet rs;
@@ -67,7 +68,7 @@ public class DB
 
             while (rs.next())
             {
-               // movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
+                // movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
             }
 
         } catch (Exception e)
@@ -76,11 +77,7 @@ public class DB
         }
         return movies;
     }
-
-
-
-
-
+    
     public List<Booking> searchBookingsByPhoneNo(String phoneNoInput) throws SQLException
     {
         String sqlString =
