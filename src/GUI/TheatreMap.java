@@ -20,7 +20,7 @@ public class TheatreMap
             {
 
                 /*
-                if("output fra database/eller liste x og y".equals("i og j fra loop"))
+                if("output fra database/eller liste row og seat".equals("i og j fra loop"))
 
                 {
                     String lol = "Set pixel til optaget";
@@ -30,7 +30,7 @@ public class TheatreMap
                 pixel ledig
                 }
                 */
-                pixel = new Pixel("Ledig",i, j);
+                pixel = new Pixel("Ledig",i+1, j+1);
                 grid.add(pixel, i, j);
             }
         }
@@ -54,7 +54,7 @@ public class TheatreMap
         {
             for (int j = 0; j < 12; j++)
             {
-                pixel = new Pixel("Ledig", i, j);
+                pixel = new Pixel("Ledig", i+1, j+1);
                 grid.add(pixel, i, j);
             }
         }

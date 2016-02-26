@@ -1,7 +1,6 @@
 package GUI;
 
 import Classes.Seats;
-import javafx.geometry.Insets;
 import javafx.scene.layout.Pane;
 
 /**
@@ -10,14 +9,14 @@ import javafx.scene.layout.Pane;
 public class Pixel extends Pane
 {
     String status;
-    int x;
-    int y;
+    int row;
+    int seat;
 
-    public Pixel(String status, int x, int y)
+    Pixel(String status, int row, int y)
     {
         this.status = status;
-        this.x = x;
-        this.y = y;
+        this.row = row;
+        this.seat = y;
         setStyle("-fx-background-color: darkgrey");
         setPrefSize(10, 10);
 
@@ -51,23 +50,23 @@ public class Pixel extends Pane
         this.status = status;
     }
 
-    public int getX()
+    public int getRow()
     {
-        return x;
+        return row;
     }
 
-    public void setX(int x)
+    public void setRow(int row)
     {
-        this.x = x;
+        this.row = row;
     }
 
-    public int getY()
+    public int getSeat()
     {
-        return y;
+        return seat;
     }
 
-    public void setY(int y)
+    public void setSeat(int seat)
     {
-        this.y = y;
+        this.seat = seat;
     }
 }

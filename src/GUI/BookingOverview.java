@@ -39,7 +39,7 @@ public class BookingOverview
         // TableView "tableBookings"
         tableViewBooking = new TableView();
         tableViewBooking.setEditable(true);
-        //tableViewBooking.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreeningID, tcRow, tcSeats, tcShowtime, tcBookingStatus);
+        tableViewBooking.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreeningID, tcRow, tcSeats, tcShowtime, tcBookingStatus);
 
         // TableColumns (tc)
         tcBookingID = new TableColumn("Booking ID");

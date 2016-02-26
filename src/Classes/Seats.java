@@ -11,7 +11,7 @@ import java.util.List;
 public class Seats
 {
     public Pixel pixel;
-    List list = new ArrayList<>();
+    static List<Pixel> list = new ArrayList<>();
 
     public Seats()
     {
@@ -21,12 +21,23 @@ public class Seats
     public void addToList(Pixel pixel)
     {
         list.add(pixel);
-        System.out.println("Seat was added with the coords: "+ pixel.getX()+","+pixel.getY());
+        System.out.println("Seat was added with row:"+ pixel.getRow()+" and seats number"+pixel.getSeat());
     }
 
     public void removeFromList(Pixel pixel)
     {
         list.remove(pixel);
-        System.out.println("Seat was removed with the coords: " + pixel.getX() + "," + pixel.getY());
+        System.out.println("Seat was removed with row:"+ pixel.getRow()+" and seats number"+pixel.getSeat());
+    }
+
+    public int getSize()
+    {
+        int i = list.size();
+        return i;
+    }
+
+    public Pixel getSeat(int i)
+    {
+        return list.get(i);
     }
 }
