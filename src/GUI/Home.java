@@ -33,36 +33,42 @@ public class Home extends Application
         Button buttonAddMovie = new Button("Add Movie");
         Button buttonAddScreening = new Button("Add Screening");
         Button testingBookingOverview = new Button("Testing Booking Overview");
+        Button buttonHome = new Button("Home");
         //Bliver ikke brugt: Button buttonOpretForestiling = new Button("Opret Forestilling");
         //Bliver ikke brugt: Button buttonPlaceHolder = new Button("Placeholder");
 
         // INDSÆT KNAPPER I TOP BAR
-        topBar.getChildren().addAll(buttonBooking, buttonAddMovie, buttonAddScreening, testingBookingOverview);
+        topBar.getChildren().addAll(buttonHome,buttonBooking, buttonAddMovie, buttonAddScreening, testingBookingOverview);
 
         // SCROLL PANE
         ScrollPane scrollPane = new ScrollPane();
 
         scrollPane.setFitToWidth(true);
-        scrollPane.setContent(HomeView.getView());
+        scrollPane.setContent(ShowMovies.getHBox());
 
         // INDSÆT I BORDERPANE
         pane.setTop(topBar);
         pane.setCenter(scrollPane);
 
         // KONTROL AF KNAPPER
+        buttonHome.setOnMouseClicked(actionEvent ->
+        {
+            pane.setCenter(scrollPane);
+        });
+
         buttonAddScreening.setOnMouseClicked(actionEvent ->
         {
-            pane.setCenter(ScreeningView.getView());
+            pane.setCenter(SubScreening.subWindow());
         });
 
         buttonAddMovie.setOnMouseClicked(e ->
         {
-            pane.setCenter(AddMovieView.getView());
+            pane.setCenter(SubMovies.subWindow());
         });
 
         buttonBooking.setOnMouseClicked(e ->
         {
-            pane.setCenter(AddBookingView.getView());
+            pane.setCenter(SubBooking.subWindow());
         });
 
         testingBookingOverview.setOnMouseClicked(e ->

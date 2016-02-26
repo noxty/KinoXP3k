@@ -1,6 +1,7 @@
 package GUI;
 
 import Controller.CreateMovieController;
+import Controller.TimeController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -137,7 +138,7 @@ public class AddMovieView
                 // do nothing
             }
 
-            long ts = getUnixTime(fieldPremiere.getText());
+            long ts = TimeController.getUnixTime(fieldPremiere.getText());
 
             //System.out.println(ts);
             //System.out.println(getDateFromTS(ts));
@@ -145,7 +146,7 @@ public class AddMovieView
 
             CreateMovieController cmc = CreateMovieController.getInstance();
 
-            cmc.createMovie(fieldTitle.getText(), fieldDescription.getText(), ageRestrict, playTime, formatForDB(ts), true, price, poster);
+            cmc.createMovie(fieldTitle.getText(), fieldDescription.getText(), ageRestrict, playTime, TimeController.formatForDB(ts), true, price, poster);
 
 
             // public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price)
@@ -153,30 +154,5 @@ public class AddMovieView
 
         layout.getChildren().add(layoutGrid);
         return layout;
-    }
-
-    private static long getUnixTime(String date) {
-        try
-        {
-            DateFormat dfm = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
-            long stamp = dfm.parse(date).getTime() / 1000;
-            return stamp;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    private static String getDateFromTS(long ts)
-    {
-        java.util.Date _date = new java.util.Date(ts * 1000);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
-        return sdf.format(_date);
-    }
-
-    private static int formatForDB(long ts) {
-        java.util.Date _date = new java.util.Date(ts * 1000);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
-        return Integer.parseInt(sdf.format(_date));
     }
 }
