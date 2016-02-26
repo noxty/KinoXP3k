@@ -13,7 +13,7 @@ public class Pixel extends Pane
     int x;
     int y;
 
-    Pixel(String status, int x, int y)
+    public Pixel(String status, int x, int y)
     {
         this.status = status;
         this.x = x;

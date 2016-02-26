@@ -59,7 +59,8 @@ public class CreateMovieController
         }
     }
 
-    public void addMovie(Movie m) {
+    public void addMovie(Movie m)
+    {
         GetMovieController.getMovies().add(m);
     }
 }

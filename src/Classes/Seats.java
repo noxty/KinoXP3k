@@ -10,8 +10,13 @@ import java.util.List;
  */
 public class Seats
 {
-    private Pixel pixel;
+    public Pixel pixel;
     List list = new ArrayList<>();
+
+    public Seats()
+    {
+
+    }
 
     public void addToList(Pixel pixel)
     {

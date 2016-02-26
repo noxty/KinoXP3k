@@ -92,11 +92,12 @@ public class Booking
         this.bookingStatus = bookingStatus;
     }
 
-    public Long getShowtime() {
+    public long getShowtime() {
         return showtime;
     }
 
-    public void setShowtime(Long showtime) {
+    public void setShowtime(long showtime)
+    {
         this.showtime = showtime;
     }
 

@@ -64,20 +64,20 @@ public class ScreeningTest extends TestCase
         assertEquals(expResult, result);
     }
 
-    public void testScreeningGetTimestamp() throws Exception
+    public void testScreeningGetShowTime() throws Exception
     {
         Screening screening = new Screening(1, 1, 1, 1);
         long expResult = 1;
-        long result = screening.getTimestamp();
+        long result = screening.getShowtime();
         assertEquals(expResult, result);
     }
 
     public void testScreeningSetTimestamp() throws Exception
     {
         Screening screening = new Screening(1, 1, 1, 1);
-        screening.setTimestamp(2);
+        screening.setShowtime(2);
         long expResult = 2;
-        long result = screening.getTimestamp();
+        long result = screening.getShowtime();
         assertEquals(expResult, result);
     }
 }
