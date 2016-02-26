@@ -21,6 +21,7 @@ Måske verdens bedste kino system.
 - Undgå statisk hvis muligt (irg)
 - Snak med Daniel (irg)
 - Pakker
+- long i Java, Timestamp i Database
 
 # Database
 
