@@ -3,15 +3,9 @@ package Controller;
 
 import Classes.Movie;
 import Data.DB;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.LinkedHashMap;
+import java.sql.*;
 
 public class CreateMovieController
 {
@@ -21,7 +15,7 @@ public class CreateMovieController
         return Instance;
     }
 
-    public void createMovie(String title, String description, int ageRestriction, int playingTime, long premiere, boolean movieStatus, double price, String poster)
+    public void createMovie(String title, String description, int ageRestriction, int playingTime, int premiere, boolean movieStatus, double price, String poster)
     {
         DB db = DB.getInstance();
 
@@ -37,7 +31,7 @@ public class CreateMovieController
             prepStmt.setString(2, description);
             prepStmt.setInt(3, ageRestriction);
             prepStmt.setInt(4, playingTime);
-            prepStmt.setLong(5, premiere);
+            prepStmt.setInt(5, premiere);
             prepStmt.setBoolean(6, movieStatus);
             prepStmt.setDouble(7, price);
             prepStmt.setString(8, poster);

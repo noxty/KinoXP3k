@@ -15,7 +15,8 @@ public class GetMovieController
 {
     private static ObservableList movieList;
 
-    public static ObservableList<Movie> getMovies() {
+    public static ObservableList<Movie> getMovies()
+    {
         return movieList;
     }
 
@@ -36,7 +37,7 @@ public class GetMovieController
 
             while (rs.next())
             {
-                movieList.add(new Movie(rs.getInt("movieid"), rs.getString("title"), rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price"), rs.getString("poster")));
+                movieList.add(new Movie(rs.getInt("movieid"), rs.getString("title"), rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), (int) rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price"), rs.getString("poster")));
             }
 
         } catch (Exception e)

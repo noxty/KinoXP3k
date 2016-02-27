@@ -15,7 +15,7 @@ public class Movie
     private double price;
     private String poster;
 
-    public Movie(int id, String title, String description, int ageRestriction, int playingtime, long premiere, boolean status, double price, String poster)
+    public Movie(int id, String title, String description, int ageRestriction, int playingtime, int premiere, boolean status, double price, String poster)
     {
         this.id = id;
         this.title = title;
