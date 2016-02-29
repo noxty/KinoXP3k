@@ -1,6 +1,8 @@
 package GUI;
 import Data.DB;
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -29,16 +31,27 @@ public class Home extends Application
         HBox topBar = new HBox();
 
         // BUTTONS FOR TOP BAR
-        Button buttonBooking = new Button("Bookings");
-        Button buttonAddMovie = new Button("Add Movie");
-        Button buttonAddScreening = new Button("Add Screening");
-        Button testingBookingOverview = new Button("Testing Booking Overview");
         Button buttonHome = new Button("Home");
+        buttonHome.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
+        Button buttonBooking = new Button("Bookings");
+        buttonBooking.setStyle("-fx-background-color: pink");
+        Button buttonMovie = new Button("Movie");
+        buttonMovie.setStyle("-fx-background-color: pink");
+        Button buttonScreening = new Button("Screening");
+        buttonScreening.setStyle("-fx-background-color: pink");
+        Button buttonBookingOverview = new Button("Booking Overview");
+        buttonBookingOverview.setStyle("-fx-background-color: pink");
+
         //Bliver ikke brugt: Button buttonOpretForestiling = new Button("Opret Forestilling");
         //Bliver ikke brugt: Button buttonPlaceHolder = new Button("Placeholder");
 
         // INDSÆT KNAPPER I TOP BAR
-        topBar.getChildren().addAll(buttonHome,buttonBooking, buttonAddMovie, buttonAddScreening, testingBookingOverview);
+        topBar.getChildren().addAll(buttonHome,buttonBooking, buttonMovie, buttonScreening, buttonBookingOverview);
+
+        // Set padding and spacing for topBar
+        topBar.setPadding(new Insets(10, 10, 10, 10));
+        topBar.setSpacing(10);
+        topBar.setAlignment(Pos.CENTER);
 
         // SCROLL PANE
         ScrollPane scrollPane = new ScrollPane();
@@ -57,12 +70,12 @@ public class Home extends Application
             pane.setCenter(scrollPane);
         });
 
-        buttonAddScreening.setOnMouseClicked(actionEvent ->
+        buttonScreening.setOnMouseClicked(actionEvent ->
         {
             pane.setCenter(SubScreening.subWindow());
         });
 
-        buttonAddMovie.setOnMouseClicked(e ->
+        buttonMovie.setOnMouseClicked(e ->
         {
             pane.setCenter(SubMovies.subWindow());
         });
@@ -72,7 +85,7 @@ public class Home extends Application
             pane.setCenter(SubBooking.subWindow());
         });
 
-        testingBookingOverview.setOnMouseClicked(e ->
+        buttonBookingOverview.setOnMouseClicked(e ->
         {
             pane.setCenter(BookingOverview.getView());
         });

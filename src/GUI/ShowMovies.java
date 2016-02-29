@@ -45,7 +45,11 @@ public class ShowMovies
         // BOOKING TITEL
 
         Text titleText = new Text("Vælg Titel");
+        titleText.setStyle("-fx-font-size:35px; -fx-padding:100");
+
+
         layout.getChildren().add(titleText);
+        layout.setPadding(new Insets(10, 10, 10, 10));
 
         VBox column = new VBox(gap);
 
