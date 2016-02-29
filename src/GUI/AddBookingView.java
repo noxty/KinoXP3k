@@ -12,6 +12,11 @@ import java.util.List;
 
 public class AddBookingView
 {
+
+    static int ScreeningID =0;
+
+
+
     public static VBox getView() {
 
         VBox layout = new VBox();
@@ -50,17 +55,7 @@ public class AddBookingView
 
 
         buttonFetch.setOnAction(event1 -> {
-            /*
-            if(Customer.ifExist(phoneText.getText().toString()))
-            {
-                fName.setText(Customer.getCustomerString("SELECT fName, lName, phoneNo FROM customer WHERE phoneNo = " + phoneText.getText().toString()));
 
-            }
-            else
-            {
-                labelError.setText("No customer found!!!!");
-            }
-            */
             List<Customer> customers = Customer.getCustomers("SELECT fName, lName, phoneNo FROM customer WHERE phoneNo = " + phoneText.getText());
             if (customers.size() < 1) {
                 labelError.setText("No customer found!");
@@ -81,14 +76,15 @@ public class AddBookingView
 
             for(int i = 0; i < seat.getSize(); i++)
             {
+
+                // getScreeningID(); -> movieID, theatreID, showtime.
+
+                //Får kunde information fra fetch og looper igennem for hvor mange sæder der er markeret
                 System.out.println(phoneText.getText()+" is the customers phonenumber");
                 System.out.println(fName.getText()+" is the first name of the customer");
                 System.out.println(lName.getText()+" is the last name of the customer");
                 System.out.println(seat.getSeat(i).getRow()+" is the row number");
                 System.out.println(seat.getSeat(i).getSeat()+" is the seat number");
-
-
-
 
             }
 
@@ -96,7 +92,18 @@ public class AddBookingView
         });
 
 
-        fieldPickedSeats.getChildren().addAll(TheatreMap.bigTheatre());
+
+        // theatreID store= 0 / lille= 1
+        if(true)
+        {
+            fieldPickedSeats.getChildren().addAll(TheatreMap.bigTheatre());
+        }
+        else
+        {
+            fieldPickedSeats.getChildren().addAll(TheatreMap.smallTheatre());
+        }
+
+
 
 
         layoutGrid.add(labelNumber, 0, 0);
@@ -117,5 +124,15 @@ public class AddBookingView
 
         layout.getChildren().add(layoutGrid);
         return layout;
+    }
+
+    public static int getScreeningID()
+    {
+        return ScreeningID;
+    }
+
+    public static void setScreeningID(int screeningID)
+    {
+        ScreeningID = screeningID;
     }
 }

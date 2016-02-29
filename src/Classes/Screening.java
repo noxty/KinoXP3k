@@ -15,12 +15,19 @@ import java.util.List;
     Screening(screeningID, movieID, theatreID, showtime)
  */
 
+
+
+
+
+
 public class Screening
 {
     private int screeningID;
     private int movieID;
     private int theatreID;
     private String showtime;
+    private String title;
+    private String theatreName;
 
     public Screening(int screeningID, int movieID, int theatreID, String showtime)
     {
@@ -29,6 +36,16 @@ public class Screening
         this.theatreID = theatreID;
         this.showtime = showtime;
     }
+
+    public Screening(int screeningID,String title, String theatreName, String showtime )
+    {
+        this.screeningID = screeningID;
+        this.showtime = showtime;
+        this.title = title;
+        this.theatreName = theatreName;
+
+    }
+
 
     public int getScreeningID()
     {
@@ -70,6 +87,16 @@ public class Screening
         this.showtime = showtime;
     }
 
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public String getTheatreName()
+    {
+        return theatreName;
+    }
+
     public static ObservableList<Screening> getScreening(String string)
     {
         ObservableList<Screening> screenings = FXCollections.observableArrayList();
@@ -86,7 +113,7 @@ public class Screening
 
             while (rs.next())
             {
-                screenings.add(new Screening(rs.getInt("screeningID"), rs.getInt("movieID"), rs.getInt("TheatreID"), rs.getString("showtime")));
+                screenings.add(new Screening(rs.getInt("screeningID"), rs.getString("title"), rs.getString("theatreName"),rs.getString("showtime")));
 
             }
 

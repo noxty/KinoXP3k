@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 
 import java.util.List;
@@ -38,7 +39,13 @@ public class ShowScreeningsView
     {
         BorderPane pane = new BorderPane();
 
-        ObservableList<Screening> screenings = Screening.getScreening("SELECT screeningID, movieID, TheatreID, showtime FROM screening WHERE movieID = " + i);
+
+
+        ObservableList<Screening> screenings = Screening.getScreening("SELECT screeningID, title, theatre.theatreName, showtime, screening.movieID, screening.theatreID " +
+                                                                        "FROM screening " +
+                                                                        "JOIN movie ON screening.movieID = movie.movieID " +
+                                                                        "JOIN theatre ON screening.theatreID = theatre.theatreID " +
+                                                                        "WHERE screening.movieID = " + i);
 
         // TableView "tableBookings"
         tableViewScreening = new TableView();
@@ -48,11 +55,11 @@ public class ShowScreeningsView
         tcScreeningID = new TableColumn("Screening ID");
         tcScreeningID.setCellValueFactory(new PropertyValueFactory<Screening, Integer>("screeningID"));
 
-        tcMovieID = new TableColumn("Movie ID");
-        tcMovieID.setCellValueFactory(new PropertyValueFactory<Screening, Integer>("movieID"));
+        tcMovieID = new TableColumn("Movie Title");
+        tcMovieID.setCellValueFactory(new PropertyValueFactory<Screening, String>("title"));
 
-        tcTheatreID = new TableColumn("Theatre ID");
-        tcTheatreID.setCellValueFactory(new PropertyValueFactory<Screening, Integer>("TheatreID"));
+        tcTheatreID = new TableColumn("Theatre");
+        tcTheatreID.setCellValueFactory(new PropertyValueFactory<Screening, String>("theatreName"));
 
         tcShowtime = new TableColumn("Date/Time");
         tcShowtime.setCellValueFactory(new PropertyValueFactory<Screening, String>("showtime"));
@@ -61,7 +68,15 @@ public class ShowScreeningsView
 
         tableViewScreening.setItems(screenings);
         pane.setCenter(tableViewScreening);
+        tableViewScreening.setOnMouseClicked(e ->
+                {
+                    pane.setCenter(AddBookingView.getView());
 
+                    Screening screening = (Screening) tableViewScreening.getSelectionModel().getSelectedItem();
+
+                    AddBookingView.setScreeningID(screening.getScreeningID());
+                }
+        );
         return pane;
     }
 }
