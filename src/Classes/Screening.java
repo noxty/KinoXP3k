@@ -1,7 +1,15 @@
 package Classes;
 
+import Data.DB;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /*
     Screening(screeningID, movieID, theatreID, showtime)
@@ -12,9 +20,9 @@ public class Screening
     private int screeningID;
     private int movieID;
     private int theatreID;
-    private long showtime;
+    private String showtime;
 
-    public Screening(int screeningID, int movieID, int theatreID, long showtime)
+    public Screening(int screeningID, int movieID, int theatreID, String showtime)
     {
         this.screeningID = screeningID;
         this.movieID = movieID;
@@ -52,14 +60,43 @@ public class Screening
         this.theatreID = theatreID;
     }
 
-    public long getShowtime()
+    public String getShowtime()
     {
         return showtime;
     }
 
-    public void setShowtime(long showtime)
+    public void setShowtime(String showtime)
     {
         this.showtime = showtime;
+    }
+
+    public static ObservableList<Screening> getScreening(String string)
+    {
+        ObservableList<Screening> screenings = FXCollections.observableArrayList();
+        try
+        {
+            DB db = DB.getInstance();
+
+            Statement stmt = db.getConnection().createStatement();
+            ResultSet rs;
+
+            String sqlString = string;
+            rs = stmt.executeQuery(sqlString);
+
+
+            while (rs.next())
+            {
+                screenings.add(new Screening(rs.getInt("screeningID"), rs.getInt("movieID"), rs.getInt("TheatreID"), rs.getString("showtime")));
+
+            }
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return screenings;
     }
 }
 

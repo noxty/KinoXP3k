@@ -31,7 +31,6 @@ public class ScreeningCalendarView
         {
             VBox day = new VBox();
 
-
         }
 
 

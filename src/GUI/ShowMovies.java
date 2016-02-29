@@ -117,6 +117,12 @@ public class ShowMovies
 
             moviePosterBox.setPrefSize(movieBoxWidth, movieBoxHeight);
             moviePosterBox.setStyle("-fx-background-image: url("+m.getPoster()+")");
+            moviePosterBox.setOnMouseClicked(e ->
+            {
+                layout.getChildren().clear();
+                layout.getChildren().addAll(ShowScreeningsView.getView(m.getId()));
+
+            });
 
             movieInfoBox.setPrefSize(movieBoxWidth, movieInfoHeight);
             movieInfoBox.setStyle("-fx-background-color: grey;");

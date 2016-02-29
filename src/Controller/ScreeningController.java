@@ -20,7 +20,7 @@ public class ScreeningController
     }
 
     DB db = DB.getInstance();
-    public void createScreening(int screeningID, int movieID, int theatreID, long showtime)
+    public void createScreening(int screeningID, int movieID, int theatreID, String showtime)
     {
         try
         {
@@ -33,7 +33,7 @@ public class ScreeningController
             prepStmt.setInt(1, screeningID);
             prepStmt.setInt(2, movieID);
             prepStmt.setInt(3, theatreID);
-            prepStmt.setLong(4, showtime);
+            prepStmt.setString(4, showtime);
 
             prepStmt.executeUpdate();
 
@@ -60,7 +60,7 @@ public class ScreeningController
         try
         {
             // denne laver en forestilling klokken 15:00 idag med screeningID 1, movieId 1, theatreID 1
-            createScreening(1,1,1,TimeController.getTimeOfDay("15:00", 0));
+            createScreening(0,34,1,String.valueOf(TimeController.getTimeOfDay("15:00", 0)));
         }
         catch (ParseException e)
         {

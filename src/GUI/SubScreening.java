@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.ScreeningController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -22,8 +23,15 @@ public class SubScreening
         });
         Button edit = new Button("Edit");
         Button delete = new Button("Delete");
+        Button test = new Button("Tilføj Screening Test");
+        test.setOnMouseClicked(e ->
+                {
+                    ScreeningController sc = ScreeningController.getInstance();
+                    sc.testScreening();
+                }
+        );
 
-        top.getChildren().addAll(create, edit, delete);
+        top.getChildren().addAll(create, edit, delete, test);
 
         pane.setTop(top);
 

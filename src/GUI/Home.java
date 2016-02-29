@@ -53,6 +53,7 @@ public class Home extends Application
         // KONTROL AF KNAPPER
         buttonHome.setOnMouseClicked(actionEvent ->
         {
+            scrollPane.setContent(ShowMovies.getHBox());
             pane.setCenter(scrollPane);
         });
 
@@ -81,5 +82,10 @@ public class Home extends Application
         scene.getStylesheets().add("KinoStyle.css");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void setPane(BorderPane pane)
+    {
+        pane.setCenter(pane);
     }
 }
