@@ -9,3 +9,7 @@
 .infoText {
     -fx-text-fill: #000000;
 }
+
+.menuButtons {
+    -fx-background-color: #000000;
+}
