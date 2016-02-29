@@ -16,7 +16,7 @@ public class BookingOverview
     static TableView tableViewBooking;
 
     // TableColumns Instances
-    static TableColumn tcBookingID, tcScreeningID, tcFName, tcLName, tcRow, tcSeats, tcShowtime, tcBookingStatus;
+    static TableColumn tableColumnBookingID, tableColumnScreeningID, tableColumnFName, tableColumnLName, tableColumnRow, tableColumnSeats, tableColumnShowtime, tableColumnBookingStatus;
 
     // TextField Instance
     static TextField textFieldSearch;
@@ -39,34 +39,33 @@ public class BookingOverview
         // TableView "tableBookings"
         tableViewBooking = new TableView();
         tableViewBooking.setEditable(true);
-        tableViewBooking.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreeningID, tcRow, tcSeats, tcShowtime, tcBookingStatus);
 
         // TableColumns (tc)
-        tcBookingID = new TableColumn("Booking ID");
-        tcBookingID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
+        tableColumnBookingID= new TableColumn("Booking ID");
+        tableColumnBookingID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
 
-        tcScreeningID = new TableColumn("Screening ID");
-        tcScreeningID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("screeningID"));
+        tableColumnScreeningID = new TableColumn("Screening ID");
+        tableColumnScreeningID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("screeningID"));
 
-        tcFName = new TableColumn("First Name");
-         tcFName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fName"));
+        tableColumnFName = new TableColumn("First Name");
+        tableColumnFName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fName"));
 
-        tcLName = new TableColumn("Last Name");
-        tcLName.setCellValueFactory(new PropertyValueFactory<Booking, String>("lName"));
+        tableColumnLName = new TableColumn("Last Name");
+        tableColumnLName.setCellValueFactory(new PropertyValueFactory<Booking, String>("lName"));
 
-        tcRow = new TableColumn("Row");
-        tcRow.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("row"));
+        tableColumnRow = new TableColumn("Row");
+        tableColumnRow.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("row"));
 
-        tcSeats = new TableColumn("Seat");
-        tcSeats.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("seat"));
+        tableColumnSeats = new TableColumn("Seat");
+        tableColumnSeats.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("seat"));
 
-        tcShowtime = new TableColumn("Date/Time");
-        tcShowtime.setCellValueFactory(new PropertyValueFactory<Booking, String>("showtime"));
+        tableColumnShowtime = new TableColumn("Date/Time");
+        tableColumnShowtime.setCellValueFactory(new PropertyValueFactory<Booking, String>("showtime"));
 
-        tcBookingStatus = new TableColumn("Booking Status");
-        tcBookingStatus.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingStatus"));
+        tableColumnBookingStatus = new TableColumn("Booking Status");
+        tableColumnBookingStatus.setCellValueFactory(new PropertyValueFactory<Booking, String>("bookingStatus"));
 
-        tableViewBooking.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreeningID, tcRow, tcSeats, tcShowtime, tcBookingStatus);
+        tableViewBooking.getColumns().addAll(tableColumnBookingID, tableColumnFName, tableColumnLName, tableColumnScreeningID, tableColumnRow, tableColumnSeats, tableColumnShowtime, tableColumnBookingStatus);
 
         // Search Function
         textFieldSearch = new TextField();
@@ -121,7 +120,7 @@ public class BookingOverview
     public static void updateTableview()
     {
         tableViewBooking.getColumns().clear();
-        tableViewBooking.getColumns().addAll(tcBookingID, tcFName, tcLName, tcScreeningID, tcRow, tcSeats, tcShowtime, tcBookingStatus);
+        tableViewBooking.getColumns().addAll(tableColumnBookingID, tableColumnFName, tableColumnLName, tableColumnScreeningID, tableColumnRow, tableColumnSeats, tableColumnShowtime, tableColumnBookingStatus);
         observableListBooking = null;
 
         try
