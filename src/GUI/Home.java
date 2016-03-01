@@ -15,6 +15,7 @@ import java.sql.SQLException;
 
 public class Home extends Application
 {
+
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     Double sceneWidth = screenSize.getWidth();
     Double sceneHeight = screenSize.getHeight();
