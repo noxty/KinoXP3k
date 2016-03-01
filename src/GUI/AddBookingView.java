@@ -18,8 +18,6 @@ public class AddBookingView
 
     static int ScreeningID =0;
 
-
-
     public static VBox getView(int screeningID)
     {
         final int[] customerID = {0};
@@ -33,6 +31,7 @@ public class AddBookingView
 
         // Buttons
         Button buttonAdd = new Button("Add Booking");
+        buttonAdd.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
 
         HBox buttonBox = new HBox(gaps);
         buttonBox.getChildren().addAll(buttonAdd);
@@ -43,6 +42,7 @@ public class AddBookingView
         Label labelNumber = new Label("Phone number:");
         TextField phoneText = new TextField();
         Button buttonFetch = new Button("Fetch");
+        buttonFetch.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
         Label labelError = new Label();
 
         //Larred

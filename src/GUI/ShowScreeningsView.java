@@ -14,9 +14,6 @@ import javafx.scene.layout.Pane;
 
 import java.util.List;
 
-/**
- * Created by Claes Gottlieb on 29/02/16.
- */
 public class ShowScreeningsView
 {
     private static ShowScreeningsView Instance = new ShowScreeningsView();
@@ -50,7 +47,6 @@ public class ShowScreeningsView
                                                                         "JOIN movie ON screening.movieID = movie.movieID " +
                                                                         "JOIN theatre ON screening.theatreID = theatre.theatreID " +
                                                                         "WHERE screening.movieID = " + i);
-
         // TableView "tableBookings"
         tableViewScreening = new TableView();
         tableViewScreening.setEditable(true);

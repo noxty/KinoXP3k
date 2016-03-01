@@ -24,7 +24,7 @@ public class ScreeningView
         TextField theatreID = new TextField("");
 
         Button button = new Button("Create");
-
+        button.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
 
         layoutGrid.add(labelSearchTitle, 0, 0 );
         layoutGrid.add(titleText, 1, 0 );

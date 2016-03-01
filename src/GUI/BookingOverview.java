@@ -73,6 +73,7 @@ public class BookingOverview
         textFieldSearch.setPromptText("Insert phone number..");
 
         buttonFind = new Button("Find");
+        buttonFind.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
         buttonFind.setOnAction(actionEvent ->
         {
             try
@@ -89,6 +90,7 @@ public class BookingOverview
 
         // Delete Function
         Button buttonDelete = new Button("Delete");
+        buttonDelete.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
         buttonDelete.setOnAction(actionEvent ->
         {
             Booking booking = (Booking) tableViewBooking.getSelectionModel().getSelectedItem();

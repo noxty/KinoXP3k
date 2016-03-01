@@ -38,6 +38,7 @@ public class AddMovieView
         TextField fieldSearchYear = new TextField();
 
         Button buttonSearch = new Button("Search");
+        buttonSearch.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
 
         HBox searchBox = new HBox(gaps);
         searchBox.setAlignment(Pos.CENTER_LEFT);
@@ -45,7 +46,10 @@ public class AddMovieView
 
         // Buttons
         Button buttonAdd = new Button("Add Movie");
+        buttonAdd.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
+
         Button buttonClear = new Button("Clear All");
+        buttonClear.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
 
         HBox buttonBox = new HBox(gaps);
         buttonBox.getChildren().addAll(buttonAdd, buttonClear);
@@ -84,6 +88,7 @@ public class AddMovieView
         layoutGrid.add(labelPrice, 0, 7);
         layoutGrid.add(fieldPrice, 1, 7);
         layoutGrid.add(buttonBox, 1, 8);
+
 
         buttonSearch.setOnMouseClicked(e -> {
             Controller.imdbReader reader = new Controller.imdbReader();

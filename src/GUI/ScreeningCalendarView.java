@@ -6,9 +6,6 @@ import javafx.scene.layout.VBox;
 
 import java.util.Calendar;
 
-/**
- * Created by Hans on 25-02-2016.
- */
 public class ScreeningCalendarView
 {
     public static Double dayWidth = 150.0;

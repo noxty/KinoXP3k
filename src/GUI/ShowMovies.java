@@ -18,7 +18,6 @@ import javafx.scene.text.Text;
 
 public class ShowMovies
 {
-
     private static Double movieBoxWidth = 300.0;
     private static Double movieBoxHeight = 400.0;
 
@@ -68,7 +67,6 @@ public class ShowMovies
         {
             System.out.println(m.getTitle());
             VBox movieBox = new VBox();
-
 
             Text movieTitle = new Text(m.getTitle());
             HBox moviePosterBox = new HBox();
@@ -129,7 +127,7 @@ public class ShowMovies
             });
 
             movieInfoBox.setPrefSize(movieBoxWidth, movieInfoHeight);
-            movieInfoBox.setStyle("-fx-background-color: grey;");
+            movieInfoBox.setStyle("-fx-background-color: pink;");
 
             movieInfoBox.getChildren().addAll(movieInfoLeftBox);
 
