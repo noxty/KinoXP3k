@@ -19,7 +19,7 @@ public class SubBooking
 
         Button create = new Button("Create");
         create.setOnMouseClicked(e -> {
-            pane.setCenter(AddBookingView.getView());
+            //pane.setCenter(AddBookingView.getView());
         });
         Button edit = new Button("Edit");
         Button delete = new Button("Delete");

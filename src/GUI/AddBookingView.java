@@ -2,11 +2,14 @@ package GUI;
 
 import Classes.Customer;
 import Classes.Seats;
+import Data.DB;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -17,7 +20,9 @@ public class AddBookingView
 
 
 
-    public static VBox getView() {
+    public static VBox getView(int screeningID)
+    {
+        final int[] customerID = {0};
 
         VBox layout = new VBox();
         GridPane layoutGrid = new GridPane();
@@ -54,9 +59,12 @@ public class AddBookingView
         HBox fieldPickedSeats = new HBox();
 
 
-        buttonFetch.setOnAction(event1 -> {
+        buttonFetch.setOnAction(event1 ->
+        {
 
-            List<Customer> customers = Customer.getCustomers("SELECT fName, lName, phoneNo FROM customer WHERE phoneNo = " + phoneText.getText());
+            List<Customer> customers = Customer.getCustomers("SELECT fName, lName, phoneNo, customerID FROM customer WHERE phoneNo = " + phoneText.getText());
+            customerID[0] = customers.get(0).getCustomerID();
+
             if (customers.size() < 1) {
                 labelError.setText("No customer found!");
             } else {
@@ -74,24 +82,44 @@ public class AddBookingView
             //Tag kundeID Screening ID seat og row,
             Seats seat = new Seats();
 
+            ShowScreeningsView ssv = ShowScreeningsView.getInstance();
+
             for(int i = 0; i < seat.getSize(); i++)
             {
+                try
+                {
+                    DB db = DB.getInstance();
 
-                // getScreeningID(); -> movieID, theatreID, showtime.
+                    PreparedStatement prepStmt;
 
-                //Får kunde information fra fetch og looper igennem for hvor mange sæder der er markeret
-                System.out.println(phoneText.getText()+" is the customers phonenumber");
-                System.out.println(fName.getText()+" is the first name of the customer");
-                System.out.println(lName.getText()+" is the last name of the customer");
-                System.out.println(seat.getSeat(i).getRow()+" is the row number");
-                System.out.println(seat.getSeat(i).getSeat()+" is the seat number");
+                    String sqlString = "INSERT INTO booking(screeningID, customerID, row, seat) VALUES(?, ?, ?, ?)";
 
+                    prepStmt = db.getConnection().prepareStatement(sqlString);
+
+                    prepStmt.setString(1, Integer.toString(screeningID));
+                    prepStmt.setString(2, Integer.toString(customerID[0]));
+                    prepStmt.setString(3, Integer.toString(seat.getSeat(i).getRow()));
+                    prepStmt.setString(4, Integer.toString(seat.getSeat(i).getSeat()));
+
+                    prepStmt.executeUpdate();
+
+                    // getScreeningID(); -> movieID, theatreID, showtime.
+
+                    //Får kunde information fra fetch og looper igennem for hvor mange sæder der er markeret
+                    System.out.println(phoneText.getText() + " is the customers phonenumber");
+                    System.out.println(fName.getText() + " is the first name of the customer");
+                    System.out.println(lName.getText() + " is the last name of the customer");
+                    System.out.println(seat.getSeat(i).getRow() + " is the row number");
+                    System.out.println(seat.getSeat(i).getSeat() + " is the seat number");
+                    System.out.println(screeningID);
+                }
+                catch(SQLException e)
+                {
+                    e.printStackTrace();
+                }
             }
 
-
         });
-
-
 
         // theatreID store= 0 / lille= 1
         if(true)
@@ -102,9 +130,6 @@ public class AddBookingView
         {
             fieldPickedSeats.getChildren().addAll(TheatreMap.smallTheatre());
         }
-
-
-
 
         layoutGrid.add(labelNumber, 0, 0);
         layoutGrid.add(buttonFetch, 2, 0);
@@ -124,6 +149,11 @@ public class AddBookingView
 
         layout.getChildren().add(layoutGrid);
         return layout;
+    }
+
+    public void saveBooking(int id)
+    {
+
     }
 
     public static int getScreeningID()

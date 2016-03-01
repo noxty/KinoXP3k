@@ -19,6 +19,12 @@ import java.util.List;
  */
 public class ShowScreeningsView
 {
+    private static ShowScreeningsView Instance = new ShowScreeningsView();
+    public static ShowScreeningsView getInstance()
+    {
+        return Instance;
+    }
+
     // TableView Instance
     static TableView tableViewScreening;
 
@@ -38,8 +44,6 @@ public class ShowScreeningsView
     public static BorderPane getView(int i)
     {
         BorderPane pane = new BorderPane();
-
-
 
         ObservableList<Screening> screenings = Screening.getScreening("SELECT screeningID, title, theatre.theatreName, showtime, screening.movieID, screening.theatreID " +
                                                                         "FROM screening " +
@@ -70,11 +74,11 @@ public class ShowScreeningsView
         pane.setCenter(tableViewScreening);
         tableViewScreening.setOnMouseClicked(e ->
                 {
-                    pane.setCenter(AddBookingView.getView());
+                    Screening s = (Screening) tableViewScreening.getSelectionModel().getSelectedItem();
 
-                    Screening screening = (Screening) tableViewScreening.getSelectionModel().getSelectedItem();
+                    pane.setCenter(AddBookingView.getView(s.getScreeningID()));
 
-                    AddBookingView.setScreeningID(screening.getScreeningID());
+                    System.out.println(s.getScreeningID());
                 }
         );
         return pane;

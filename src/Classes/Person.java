@@ -6,12 +6,14 @@ public abstract class Person
     private String firstName;
     private String lastName;
     private int phoneNo;
+    private int customerID;
 
-    public Person(String firstName, String lastName, int phoneNo)
+    public Person(String firstName, String lastName, int phoneNo, int customerID)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNo = phoneNo;
+        this.customerID = customerID;
     }
 
     public String getFirstName()
@@ -42,5 +44,15 @@ public abstract class Person
     public void setPhone(int phone)
     {
         this.phoneNo = phone;
+    }
+
+    public int getCustomerID()
+    {
+        return customerID;
+    }
+
+    public void setCustomerID(int customerID)
+    {
+        this.customerID = customerID;
     }
 }

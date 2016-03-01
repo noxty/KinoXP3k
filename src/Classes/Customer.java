@@ -11,9 +11,9 @@ import java.util.List;
 public class Customer extends Person
 {
 
-    public Customer(String firstName, String lastName, int phoneNo)
+    public Customer(String firstName, String lastName, int phoneNo, int customerID)
     {
-        super(firstName, lastName, phoneNo);
+        super(firstName, lastName, phoneNo, customerID);
     }
 
 
@@ -93,7 +93,7 @@ public class Customer extends Person
 
             while (rs.next())
             {
-                customers.add(new Customer(rs.getString("fName"), rs.getString("lName"), rs.getInt("phoneNo")));
+                customers.add(new Customer(rs.getString("fName"), rs.getString("lName"), rs.getInt("phoneNo"), rs.getInt("customerID")));
 
             }
 
