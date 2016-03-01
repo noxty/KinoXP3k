@@ -13,3 +13,9 @@
 .menuButtons {
     -fx-background-color: #000000;
 }
+
+.button {
+    -fx-background-color: pink;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+}

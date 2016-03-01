@@ -10,12 +10,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.sql.SQLException;
 
 public class Home extends Application
 {
-    Double sceneWidth = 1024.0;
-    Double sceneHeight = 768.0;
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    Double sceneWidth = screenSize.getWidth();
+    Double sceneHeight = screenSize.getHeight();
 
     public static void main(String[] args)
     {
@@ -32,15 +34,10 @@ public class Home extends Application
 
         // BUTTONS FOR TOP BAR
         Button buttonHome = new Button("Home");
-        buttonHome.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
         Button buttonBooking = new Button("Bookings");
-        buttonBooking.setStyle("-fx-background-color: pink");
         Button buttonMovie = new Button("Movie");
-        buttonMovie.setStyle("-fx-background-color: pink");
         Button buttonScreening = new Button("Screening");
-        buttonScreening.setStyle("-fx-background-color: pink");
         Button buttonBookingOverview = new Button("Booking Overview");
-        buttonBookingOverview.setStyle("-fx-background-color: pink");
 
         //Bliver ikke brugt: Button buttonOpretForestiling = new Button("Opret Forestilling");
         //Bliver ikke brugt: Button buttonPlaceHolder = new Button("Placeholder");
