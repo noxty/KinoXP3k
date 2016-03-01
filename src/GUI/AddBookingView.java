@@ -103,6 +103,20 @@ public class AddBookingView
 
                     prepStmt.executeUpdate();
 
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Booking er oprettet");
+                    alert.setHeaderText("Din booking er oprettet!");
+                    alert.setContentText
+                    (
+                        phoneText.getText() + " is the customers phonenumber\n" +
+                        fName.getText() + " is the first name of the customer\n" +
+                        lName.getText() + " is the last name of the customer\n" +
+                        seat.getSeat(i).getRow() + " is the row number\n" +
+                        seat.getSeat(i).getSeat() + " is the seat number\n"
+                    );
+
+                    alert.showAndWait();
+
                     // getScreeningID(); -> movieID, theatreID, showtime.
 
                     //Får kunde information fra fetch og looper igennem for hvor mange sæder der er markeret
