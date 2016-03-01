@@ -13,6 +13,7 @@ public class BookingController
     ObservableList<Booking> bookings = FXCollections.observableArrayList();
     DB db = DB.getInstance();
 
+    /*
     public ObservableList<Booking> createBooking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, String showtime) throws SQLException
     {
         Booking booking = new Booking(bookingID, screeningID, fName, lName, row, seat, bookingStatus, showtime);
@@ -39,7 +40,7 @@ public class BookingController
                 booking.getShowtime()));
 
         return createBooking(bookingID, screeningID, fName, lName, row, seat, bookingStatus, showtime);
-    }
+    }*/
 
    /* public ObservableList<Booking> findBookingByPhoneNo(int bookingID, int screeningID, int customerID, int row, int seat, int status)
     {

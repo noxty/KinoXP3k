@@ -13,8 +13,9 @@ public class Booking
     private int seat;
     private String bookingStatus;
     private String showtime;
+    private String screeningName;
 
-    public Booking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, String showtime)
+    public Booking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, String showtime, String screeningName)
     {
         this.bookingID = bookingID;
         this.screeningID = screeningID;
@@ -24,6 +25,7 @@ public class Booking
         this.seat = seat;
         this.bookingStatus = bookingStatus;
         this.showtime = showtime;
+        this.screeningName = screeningName;
     }
 
     public int getBookingID()
@@ -99,6 +101,11 @@ public class Booking
     public void setShowtime(String showtime)
     {
         this.showtime = showtime;
+    }
+
+    public String getScreeningName()
+    {
+        return screeningName;
     }
 
     //Info om Bookingen

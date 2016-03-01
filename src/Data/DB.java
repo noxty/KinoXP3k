@@ -78,20 +78,22 @@ public class DB
         }
         return movies;
     }
-    
+
     public List<Booking> searchBookingsByPhoneNo(String phoneNoInput) throws SQLException
     {
         String sqlString =
 
-                "SELECT booking.bookingID, booking.screeningID, " +
-                "customer.fname, customer.lname, booking.row, booking.seat, booking.bookingStatus, " +
-                "screening.showtime " +
-                "FROM booking " +
-                "JOIN customer " +
-                "ON booking.customerID = customer.customerID " +
-                "JOIN screening " +
-                "ON booking.screeningID = screening.screeningID " +
-                "WHERE phoneNo = '"+ phoneNoInput +"'";
+                "SELECT booking.bookingID, booking.screeningID,\n" +
+                        "                customer.fname, customer.lname, booking.row, booking.seat, booking.bookingStatus,\n" +
+                        "                screening.showtime, movie.title \n" +
+                        "                FROM booking \n" +
+                        "                JOIN customer \n" +
+                        "                ON booking.customerID = customer.customerID \n" +
+                        "                JOIN screening \n" +
+                        "                ON booking.screeningID = screening.screeningID \n" +
+                        "                JOIN movie \n" +
+                        "                ON screening.movieID = movie.movieID\n" +
+                        "                WHERE phoneNo ='"+ phoneNoInput +"'";
 
         resultSet = statement.executeQuery(sqlString);
 
@@ -102,7 +104,7 @@ public class DB
             while (resultSet.next())
             {
                 System.out.println();
-                bookings.add(new Booking(resultSet.getInt("bookingID"), resultSet.getInt("screeningID"), resultSet.getString("fname"), resultSet.getString("lname"), resultSet.getInt("row"), resultSet.getInt("seat"), resultSet.getString("bookingStatus"), TimeController.getDateFromTS(resultSet.getLong("showtime"))));
+                bookings.add(new Booking(resultSet.getInt("bookingID"), resultSet.getInt("screeningID"), resultSet.getString("fname"), resultSet.getString("lname"), resultSet.getInt("row"), resultSet.getInt("seat"), resultSet.getString("bookingStatus"), TimeController.getDateFromTS(resultSet.getLong("showtime")), resultSet.getString("title")));
             }
         }
 

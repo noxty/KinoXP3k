@@ -45,8 +45,8 @@ public class BookingOverview
         tcBookingID = new TableColumn("Booking ID");
         tcBookingID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("bookingID"));
 
-        tcScreeningID = new TableColumn("Screening ID");
-        tcScreeningID.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("screeningID"));
+        tcScreeningID = new TableColumn("Screening Name");
+        tcScreeningID.setCellValueFactory(new PropertyValueFactory<Booking, String>("screeningName"));
 
         tcFName = new TableColumn("First Name");
          tcFName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fName"));
