@@ -44,7 +44,7 @@ public class Home extends Application
         //Bliver ikke brugt: Button buttonPlaceHolder = new Button("Placeholder");
 
         // INDSÆT KNAPPER I TOP BAR
-        topBar.getChildren().addAll(buttonHome,buttonBooking, buttonMovie, buttonScreening, buttonBookingOverview);
+        topBar.getChildren().addAll(buttonHome,buttonBooking, buttonMovie, buttonScreening);
 
         // Set padding and spacing for topBar
         topBar.setPadding(new Insets(10, 10, 10, 10));
@@ -72,17 +72,17 @@ public class Home extends Application
 
         buttonScreening.setOnMouseClicked(actionEvent ->
         {
-            pane.setCenter(SubScreening.subWindow());
+            pane.setCenter(ScreeningView.getView());
         });
 
         buttonMovie.setOnMouseClicked(e ->
         {
-            pane.setCenter(SubMovies.subWindow());
+            pane.setCenter(AddMovieView.getView());
         });
 
         buttonBooking.setOnMouseClicked(e ->
         {
-            pane.setCenter(SubBooking.subWindow());
+            pane.setCenter(BookingOverview.getView());
         });
 
         buttonBookingOverview.setOnMouseClicked(e ->
