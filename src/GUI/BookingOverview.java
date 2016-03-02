@@ -1,12 +1,17 @@
 package GUI;
+
 import Classes.Booking;
 import Data.DB;
-import javafx.collections.*;
-import javafx.geometry.*;
-import javafx.scene.control.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.*;
-import javafx.scene.text.Font;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
 
@@ -49,7 +54,7 @@ public class BookingOverview
         tcScreeningID.setCellValueFactory(new PropertyValueFactory<Booking, String>("screeningName"));
 
         tcFName = new TableColumn("First Name");
-         tcFName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fName"));
+        tcFName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fName"));
 
         tcLName = new TableColumn("Last Name");
         tcLName.setCellValueFactory(new PropertyValueFactory<Booking, String>("lName"));
@@ -80,9 +85,7 @@ public class BookingOverview
             {
                 observableListBooking = FXCollections.observableArrayList(DB.getInstance().searchBookingsByPhoneNo(textFieldSearch.getText()));
                 tableViewBooking.setItems(observableListBooking);
-            }
-
-            catch (SQLException e)
+            } catch (SQLException e)
             {
                 e.printStackTrace();
             }
@@ -99,9 +102,7 @@ public class BookingOverview
             {
                 DB.getInstance().deleteBooking(booking);
                 updateTableview();
-            }
-
-            catch (ClassNotFoundException e)
+            } catch (ClassNotFoundException e)
             {
                 e.printStackTrace();
             }
@@ -129,9 +130,7 @@ public class BookingOverview
         try
         {
             observableListBooking = FXCollections.observableArrayList(DB.getInstance().searchBookingsByPhoneNo(textFieldSearch.getText()));
-        }
-
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             e.printStackTrace();
         }

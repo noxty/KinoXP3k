@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -30,7 +29,8 @@ public class ShowMovies
     private static Pos rowAlignment = Pos.TOP_CENTER;
 
 
-    public static VBox getHBox() {
+    public static VBox getHBox()
+    {
         VBox layout = new VBox();
 
         layout.setAlignment(Pos.CENTER);
@@ -101,7 +101,7 @@ public class ShowMovies
             GridPane infoGrid = new GridPane();
             infoGrid.setPrefWidth(movieBoxWidth);
 
-            infoGrid.getColumnConstraints().addAll(labels,fields);
+            infoGrid.getColumnConstraints().addAll(labels, fields);
             infoGrid.add(movieLabelAgeRestriction, 0, 0);
             infoGrid.add(movieTextAgeRestriction, 1, 0);
             infoGrid.add(movieLabelPlayingTime, 0, 1);
@@ -118,7 +118,7 @@ public class ShowMovies
             //moviePosterBox.setAlignment(Pos.BOTTOM_LEFT);
 
             moviePosterBox.setPrefSize(movieBoxWidth, movieBoxHeight);
-            moviePosterBox.setStyle("-fx-background-image: url("+m.getPoster()+"); -fx-cursor: hand; -fx-font-size: 16px; -fx-font-weight: bold;");
+            moviePosterBox.setStyle("-fx-background-image: url(" + m.getPoster() + "); -fx-cursor: hand; -fx-font-size: 16px; -fx-font-weight: bold;");
             moviePosterBox.setOnMouseClicked(e ->
             {
                 layout.getChildren().clear();
@@ -135,7 +135,8 @@ public class ShowMovies
             movieBox.getChildren().addAll(moviePosterBox, movieInfoBox);
 
             row.getChildren().add(movieBox);
-            if (i % moviesPerRow == 2) {
+            if (i % moviesPerRow == 2)
+            {
                 column.getChildren().add(row);
                 row = new HBox(gap);
                 row.setAlignment(rowAlignment);
@@ -143,7 +144,8 @@ public class ShowMovies
             i++;
         }
 
-        if (i % moviesPerRow != 0) {
+        if (i % moviesPerRow != 0)
+        {
             column.getChildren().add(row);
         }
 

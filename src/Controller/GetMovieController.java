@@ -24,12 +24,12 @@ public class GetMovieController
     {
         try
         {
-        DB db = DB.getInstance();
+            DB db = DB.getInstance();
 
-        Statement stmt = db.getConnection().createStatement();
-        ResultSet rs;
+            Statement stmt = db.getConnection().createStatement();
+            ResultSet rs;
 
-        movieList = FXCollections.observableArrayList();
+            movieList = FXCollections.observableArrayList();
 
 
             String sqlString = "SELECT * FROM movie";

@@ -17,7 +17,6 @@ public class Customer extends Person
     }
 
 
-
     public static String getCustomerString(String string)
     {
         String value = null;
@@ -38,8 +37,7 @@ public class Customer extends Person
 
             }
 
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -67,8 +65,7 @@ public class Customer extends Person
 
             }
 
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }

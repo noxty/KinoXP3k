@@ -1,4 +1,5 @@
 package GUI;
+
 import Data.DB;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -11,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.sql.SQLException;
 
 public class Home extends Application
 {
@@ -25,7 +25,8 @@ public class Home extends Application
         launch(args);
     }
 
-    public void start(Stage stage) {
+    public void start(Stage stage)
+    {
 
         DB db = DB.getInstance();
         BorderPane pane = new BorderPane();
@@ -44,7 +45,7 @@ public class Home extends Application
         //Bliver ikke brugt: Button buttonPlaceHolder = new Button("Placeholder");
 
         // INDSÆT KNAPPER I TOP BAR
-        topBar.getChildren().addAll(buttonHome,buttonBooking, buttonMovie, buttonScreening);
+        topBar.getChildren().addAll(buttonHome, buttonBooking, buttonMovie, buttonScreening);
 
         // Set padding and spacing for topBar
         topBar.setPadding(new Insets(10, 10, 10, 10));

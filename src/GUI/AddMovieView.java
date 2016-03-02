@@ -11,17 +11,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.Map;
 
 
 public class AddMovieView
 {
     private static String poster;
-    public static VBox getView() {
+
+    public static VBox getView()
+    {
         VBox layout = new VBox();
         GridPane layoutGrid = new GridPane();
         int gaps = 10;
@@ -93,14 +91,17 @@ public class AddMovieView
         buttonSearch.setOnMouseClicked(e -> {
             Controller.imdbReader reader = new Controller.imdbReader();
             int year = 0;
-            try {
+            try
+            {
                 year = Integer.parseInt(fieldSearchYear.getText());
-            } catch (NumberFormatException nfe) {
+            } catch (NumberFormatException nfe)
+            {
                 // Do nothing
             }
             Map<String, String> info = reader.getInfo(fieldSearchTitle.getText(), year);
 
-            if (info.containsKey("error")) {
+            if (info.containsKey("error"))
+            {
                 fieldTitle.setText(info.get("error"));
                 fieldDescription.setText("");
                 fieldGenre.setText("");
@@ -108,7 +109,8 @@ public class AddMovieView
                 fieldPlaytime.setText("");
                 fieldPremiere.setText("");
                 fieldPrice.setText("");
-            } else {
+            } else
+            {
                 fieldTitle.setText(info.get("title") + " (" + info.get("year") + ")");
                 fieldDescription.setText(info.get("description") + "\n" + "Director: " + info.get("director") + "\n" + "Actors: " + info.get("actors"));
                 fieldGenre.setText(info.get("genre"));
@@ -123,23 +125,29 @@ public class AddMovieView
             Data.DB database = Data.DB.getInstance();
 
             int ageRestrict = 0;
-            try {
+            try
+            {
                 ageRestrict = Integer.parseInt(fieldAgeRestriction.getText());
-            } catch (NumberFormatException nfe) {
+            } catch (NumberFormatException nfe)
+            {
                 // do nothing
             }
 
             int playTime = 0;
-            try {
+            try
+            {
                 playTime = Integer.parseInt(fieldPlaytime.getText());
-            } catch (NumberFormatException nfe) {
+            } catch (NumberFormatException nfe)
+            {
                 // do nothing
             }
 
             int price = 0;
-            try {
+            try
+            {
                 price = Integer.parseInt(fieldPrice.getText());
-            } catch (NumberFormatException nfe) {
+            } catch (NumberFormatException nfe)
+            {
                 // do nothing
             }
 

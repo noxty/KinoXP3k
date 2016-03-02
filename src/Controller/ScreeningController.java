@@ -6,7 +6,6 @@ import Data.DB;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.ParseException;
 
 /**
  * Created by Claes Gottlieb on 26/02/16.
@@ -14,12 +13,14 @@ import java.text.ParseException;
 public class ScreeningController
 {
     private static ScreeningController Instance = new ScreeningController();
+
     public static ScreeningController getInstance()
     {
         return Instance;
     }
 
     DB db = DB.getInstance();
+
     public void createScreening(int movieID, int theatreID, String showtime)
     {
         try
@@ -52,7 +53,8 @@ public class ScreeningController
         }
     }
 
-    public void addScreening(Screening s) {
+    public void addScreening(Screening s)
+    {
         db.getScreenings().add(s);
     }
 }

@@ -14,7 +14,9 @@ import java.util.Map;
 
 public class imdbReader
 {
-    public imdbReader(){}
+    public imdbReader()
+    {
+    }
 
     public Map<String, String> getInfo(String query, int year)
     {
@@ -50,7 +52,7 @@ public class imdbReader
 
             //System.out.println(map);
 
-        } catch (IOException|JSONException e)
+        } catch (IOException | JSONException e)
         {
             map.put("error", "No movie found.");
         }

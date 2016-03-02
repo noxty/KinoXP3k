@@ -12,7 +12,7 @@ public class Scene extends Pane
     {
         setStyle("-fx-background-color: black");
         setPrefSize(1, 220);
-        Insets in = new Insets(5,5,5,5);
+        Insets in = new Insets(5, 5, 5, 5);
         setPadding(in);
         setMaxWidth(20);
     }

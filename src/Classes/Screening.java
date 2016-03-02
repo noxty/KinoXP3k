@@ -2,15 +2,10 @@ package Classes;
 
 import Data.DB;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
-
 
 
 public class Screening
@@ -30,7 +25,7 @@ public class Screening
         this.showtime = showtime;
     }
 
-    public Screening(int screeningID,String title, String theatreName, String showtime )
+    public Screening(int screeningID, String title, String theatreName, String showtime)
     {
         this.screeningID = screeningID;
         this.showtime = showtime;
@@ -106,12 +101,11 @@ public class Screening
 
             while (rs.next())
             {
-                screenings.add(new Screening(rs.getInt("screeningID"), rs.getString("title"), rs.getString("theatreName"),rs.getString("showtime")));
+                screenings.add(new Screening(rs.getInt("screeningID"), rs.getString("title"), rs.getString("theatreName"), rs.getString("showtime")));
 
             }
 
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }

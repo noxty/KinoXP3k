@@ -37,7 +37,6 @@ public class Pixel extends Pane
         });
 
 
-
     }
 
     public String getStatus()

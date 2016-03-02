@@ -21,13 +21,13 @@ public class Seats
     public void addToList(Pixel pixel)
     {
         list.add(pixel);
-        System.out.println("Seat was added with row:"+ pixel.getRow()+" and seats number"+pixel.getSeat());
+        System.out.println("Seat was added with row:" + pixel.getRow() + " and seats number" + pixel.getSeat());
     }
 
     public void removeFromList(Pixel pixel)
     {
         list.remove(pixel);
-        System.out.println("Seat was removed with row:"+ pixel.getRow()+" and seats number"+pixel.getSeat());
+        System.out.println("Seat was removed with row:" + pixel.getRow() + " and seats number" + pixel.getSeat());
     }
 
     public int getSize()

@@ -1,19 +1,14 @@
 package Data;
+
 import Classes.Booking;
-import Classes.Movie;
 import Classes.Screening;
 import Controller.TimeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.VBox;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class DB
 {
@@ -37,9 +32,7 @@ public class DB
             String url = "jdbc:mysql://lessthan3.xyz/kino";
             connection = DriverManager.getConnection(url, "kino", "kinoxp");
             statement = connection.createStatement();
-        }
-
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -57,7 +50,7 @@ public class DB
 
     public ObservableList<Screening> getScreenings()
     {
-        ObservableList<Screening> movies =  FXCollections.observableArrayList();
+        ObservableList<Screening> movies = FXCollections.observableArrayList();
 
         //Statement stmt;
         ResultSet rs;
@@ -93,7 +86,7 @@ public class DB
                         "                ON booking.screeningID = screening.screeningID \n" +
                         "                JOIN movie \n" +
                         "                ON screening.movieID = movie.movieID\n" +
-                        "                WHERE phoneNo ='"+ phoneNoInput +"'";
+                        "                WHERE phoneNo ='" + phoneNoInput + "'";
 
         resultSet = statement.executeQuery(sqlString);
 
@@ -106,9 +99,7 @@ public class DB
                 System.out.println();
                 bookings.add(new Booking(resultSet.getInt("bookingID"), resultSet.getInt("screeningID"), resultSet.getString("fname"), resultSet.getString("lname"), resultSet.getInt("row"), resultSet.getInt("seat"), resultSet.getString("bookingStatus"), TimeController.getDateFromTS(resultSet.getLong("showtime")), resultSet.getString("title")));
             }
-        }
-
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -129,14 +120,11 @@ public class DB
 
             preparedStatement.setInt(1, booking);
             preparedStatement.executeUpdate();
-        }
-
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             e.printStackTrace();
         }
     }
-
 
 
 }

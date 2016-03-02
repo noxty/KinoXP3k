@@ -4,12 +4,14 @@ package Controller;
 import Classes.Movie;
 import Data.DB;
 
-
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class CreateMovieController
 {
     private static CreateMovieController Instance = new CreateMovieController();
+
     public static CreateMovieController getInstance()
     {
         return Instance;

@@ -28,6 +28,7 @@ public class Booking
         this.showtime = showtime;
         this.screeningName = screeningName;
     }
+
     public Booking(int bookingID, int screeningID, int customerID, int row, int seat, String bookingStatus)
     {
         this.bookingID = bookingID;
@@ -58,19 +59,23 @@ public class Booking
         this.screeningID = screeningID;
     }
 
-    public String getFName() {
+    public String getFName()
+    {
         return fName;
     }
 
-    public void setFName(String fName) {
+    public void setFName(String fName)
+    {
         this.fName = fName;
     }
 
-    public String getLName() {
+    public String getLName()
+    {
         return lName;
     }
 
-    public void setLName(String lName) {
+    public void setLName(String lName)
+    {
         this.lName = lName;
     }
 
@@ -104,7 +109,8 @@ public class Booking
         this.bookingStatus = bookingStatus;
     }
 
-    public String getShowtime() {
+    public String getShowtime()
+    {
         return showtime;
     }
 

@@ -2,21 +2,17 @@ package GUI;
 
 import Classes.Booking;
 import Classes.Screening;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-
-
-import java.util.List;
 
 public class ShowScreeningsView
 {
     private static ShowScreeningsView Instance = new ShowScreeningsView();
+
     public static ShowScreeningsView getInstance()
     {
         return Instance;
@@ -43,10 +39,10 @@ public class ShowScreeningsView
         BorderPane pane = new BorderPane();
 
         ObservableList<Screening> screenings = Screening.getScreening("SELECT screeningID, title, theatre.theatreName, showtime, screening.movieID, screening.theatreID " +
-                                                                        "FROM screening " +
-                                                                        "JOIN movie ON screening.movieID = movie.movieID " +
-                                                                        "JOIN theatre ON screening.theatreID = theatre.theatreID " +
-                                                                        "WHERE screening.movieID = " + i);
+                "FROM screening " +
+                "JOIN movie ON screening.movieID = movie.movieID " +
+                "JOIN theatre ON screening.theatreID = theatre.theatreID " +
+                "WHERE screening.movieID = " + i);
         // TableView "tableBookings"
         tableViewScreening = new TableView();
         tableViewScreening.setEditable(true);

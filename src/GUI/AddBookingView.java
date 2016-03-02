@@ -3,7 +3,10 @@ package GUI;
 import Classes.Customer;
 import Classes.Seats;
 import Data.DB;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,7 +19,7 @@ import java.util.List;
 public class AddBookingView
 {
 
-    static int ScreeningID =0;
+    static int ScreeningID = 0;
 
     public static VBox getView(int screeningID)
     {
@@ -55,7 +58,6 @@ public class AddBookingView
         TextField lName = new TextField();
 
 
-
         HBox fieldPickedSeats = new HBox();
 
 
@@ -65,10 +67,13 @@ public class AddBookingView
             List<Customer> customers = Customer.getCustomers("SELECT fName, lName, phoneNo, customerID FROM customer WHERE phoneNo = " + phoneText.getText());
             customerID[0] = customers.get(0).getCustomerID();
 
-            if (customers.size() < 1) {
+            if (customers.size() < 1)
+            {
                 labelError.setText("No customer found!");
-            } else {
-                for (Customer c : customers) {
+            } else
+            {
+                for (Customer c : customers)
+                {
                     fName.setText(c.getFirstName());
                     lName.setText(c.getLastName());
                     // vil du noget med phone#
@@ -84,7 +89,7 @@ public class AddBookingView
 
             ShowScreeningsView ssv = ShowScreeningsView.getInstance();
 
-            for(int i = 0; i < seat.getSize(); i++)
+            for (int i = 0; i < seat.getSize(); i++)
             {
                 try
                 {
@@ -107,13 +112,13 @@ public class AddBookingView
                     alert.setTitle("Booking er oprettet");
                     alert.setHeaderText("Din booking er oprettet!");
                     alert.setContentText
-                    (
-                        phoneText.getText() + " is the customers phonenumber\n" +
-                        fName.getText() + " is the first name of the customer\n" +
-                        lName.getText() + " is the last name of the customer\n" +
-                        seat.getSeat(i).getRow() + " is the row number\n" +
-                        seat.getSeat(i).getSeat() + " is the seat number\n"
-                    );
+                            (
+                                    phoneText.getText() + " is the customers phonenumber\n" +
+                                            fName.getText() + " is the first name of the customer\n" +
+                                            lName.getText() + " is the last name of the customer\n" +
+                                            seat.getSeat(i).getRow() + " is the row number\n" +
+                                            seat.getSeat(i).getSeat() + " is the seat number\n"
+                            );
 
                     alert.showAndWait();
 
@@ -126,8 +131,7 @@ public class AddBookingView
                     System.out.println(seat.getSeat(i).getRow() + " is the row number");
                     System.out.println(seat.getSeat(i).getSeat() + " is the seat number");
                     System.out.println(screeningID);
-                }
-                catch(SQLException e)
+                } catch (SQLException e)
                 {
                     e.printStackTrace();
                 }
@@ -136,11 +140,10 @@ public class AddBookingView
         });
 
         // theatreID store= 0 / lille= 1
-        if(true)
+        if (true)
         {
             fieldPickedSeats.getChildren().addAll(TheatreMap.bigTheatre());
-        }
-        else
+        } else
         {
             fieldPickedSeats.getChildren().addAll(TheatreMap.smallTheatre());
         }
@@ -148,13 +151,13 @@ public class AddBookingView
         layoutGrid.add(labelNumber, 0, 0);
         layoutGrid.add(buttonFetch, 2, 0);
         layoutGrid.add(phoneText, 1, 0);
-        layoutGrid.add(labelError, 3,0);
+        layoutGrid.add(labelError, 3, 0);
 
         //Customer
-        layoutGrid.add(labelFname,0,1);
-        layoutGrid.add(fName,1,1);
-        layoutGrid.add(labelLname,0,2);
-        layoutGrid.add(lName,1,2);
+        layoutGrid.add(labelFname, 0, 1);
+        layoutGrid.add(fName, 1, 1);
+        layoutGrid.add(labelLname, 0, 2);
+        layoutGrid.add(lName, 1, 2);
 
 
         layoutGrid.add(scene, 0, 4);
