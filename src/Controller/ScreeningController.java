@@ -20,20 +20,20 @@ public class ScreeningController
     }
 
     DB db = DB.getInstance();
-    public void createScreening(int screeningID, int movieID, int theatreID, String showtime)
+    public void createScreening(int movieID, int theatreID, String showtime)
     {
         try
         {
             PreparedStatement prepStmt;
 
-            String sqlString = "INSERT INTO screening(screeningID, movieID, theatreID, showtime) VALUES(?, ?, ?, ?)";
+            String sqlString = "INSERT INTO screening(movieID, theatreID, showtime) VALUES(?, ?, ?)";
 
             prepStmt = db.getConnection().prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
 
-            prepStmt.setInt(1, screeningID);
-            prepStmt.setInt(2, movieID);
-            prepStmt.setInt(3, theatreID);
-            prepStmt.setString(4, showtime);
+            //prepStmt.setInt(1, screeningID);
+            prepStmt.setInt(1, movieID);
+            prepStmt.setInt(2, theatreID);
+            prepStmt.setString(3, showtime);
 
             prepStmt.executeUpdate();
 
@@ -44,7 +44,7 @@ public class ScreeningController
                 id = rs.getInt(1);
             }
 
-            addScreening(new Screening(screeningID, movieID, theatreID, showtime));
+            addScreening(new Screening(id, movieID, theatreID, showtime));
 
         } catch (Exception e)
         {
@@ -54,17 +54,5 @@ public class ScreeningController
 
     public void addScreening(Screening s) {
         db.getScreenings().add(s);
-    }
-    public void testScreening()
-    {
-        try
-        {
-            // denne laver en forestilling klokken 15:00 idag med screeningID 1, movieId 1, theatreID 1
-            createScreening(0,34,1,String.valueOf(TimeController.getTimeOfDay("15:00", 0)));
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
     }
 }
