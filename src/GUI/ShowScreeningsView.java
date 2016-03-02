@@ -70,11 +70,15 @@ public class ShowScreeningsView
         pane.setCenter(tableViewScreening);
         tableViewScreening.setOnMouseClicked(e ->
                 {
+
                     Screening s = (Screening) tableViewScreening.getSelectionModel().getSelectedItem();
 
-                    pane.setCenter(AddBookingView.getView(s.getScreeningID()));
+                    if (s != null)
+                    {
+                        pane.setCenter(AddBookingView.getView(s.getScreeningID()));
 
-                    System.out.println(s.getScreeningID());
+                        System.out.println(s.getScreeningID());
+                    }
                 }
         );
         return pane;
