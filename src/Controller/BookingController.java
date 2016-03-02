@@ -1,50 +1,58 @@
 package Controller;
 
-import Classes.Booking;
-import Data.DB;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
-import java.sql.SQLException;
-import java.util.LinkedHashMap;
+        import Classes.Booking;
+        import Data.DB;
+
+
+        import java.sql.*;
 
 public class BookingController
 {
-    ObservableList<Booking> bookings = FXCollections.observableArrayList();
-    DB db = DB.getInstance();
-
-    /*
-    public ObservableList<Booking> createBooking(int bookingID, int screeningID, String fName, String lName, int row, int seat, String bookingStatus, String showtime) throws SQLException
+    private static BookingController Instance = new BookingController();
+    public static BookingController getInstance()
     {
-        Booking booking = new Booking(bookingID, screeningID, fName, lName, row, seat, bookingStatus, showtime);
-        LinkedHashMap<Integer, String> lhm = new LinkedHashMap<>();
+        return Instance;
+    }
 
-        lhm.put(1, Integer.toString(booking.getBookingID()));
-        lhm.put(2, Integer.toString(booking.getScreeningID()));
-        lhm.put(3, booking.getFName());
-        lhm.put(4, booking.getLName());
-        lhm.put(5, Integer.toString(booking.getRow()));
-        lhm.put(6, Integer.toString(booking.getSeat()));
-        lhm.put(7, booking.getBookingStatus());
-        lhm.put(8, booking.getShowtime());
-
-        db.executeQuery("INSERT INTO Booking VALUES(?,?,?,?,?,?,?,?)", lhm);
-
-        bookings.add(new Booking(booking.getBookingID(),
-                booking.getScreeningID(),
-                booking.getFName(),
-                booking.getLName(),
-                booking.getRow(),
-                booking.getSeat(),
-                booking.getBookingStatus(),
-                booking.getShowtime()));
-
-        return createBooking(bookingID, screeningID, fName, lName, row, seat, bookingStatus, showtime);
-    }*/
-
-   /* public ObservableList<Booking> findBookingByPhoneNo(int bookingID, int screeningID, int customerID, int row, int seat, int status)
+    public void createBooking(int bookingID, int screeningID, int customerID, int row, int seat, String bookingStatus)
     {
+        DB db = DB.getInstance();
 
-    }*/
+        try
+        {
+            PreparedStatement prepStmt;
 
+            String sqlString = "INSERT INTO booking(screeningID, customerID, row, seat, bookingStatus) VALUES(?, ?, ?, ?, ?)";
+
+            prepStmt = db.getConnection().prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
+
+            prepStmt.setInt(1, screeningID);
+            prepStmt.setInt(2, customerID);
+            prepStmt.setInt(3, row);
+            prepStmt.setInt(4, seat);
+            prepStmt.setString(5, bookingStatus);
+
+
+            prepStmt.executeUpdate();
+
+            ResultSet rs = prepStmt.getGeneratedKeys();
+            int id = 0;
+            if (rs.next())
+            {
+                id = rs.getInt(1);
+            }
+
+            addBooking(new Booking(id, screeningID, customerID, row, seat, bookingStatus));
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void addBooking(Booking b)
+    {
+        GetBookingController.getBooking().add(b);
+    }
 }

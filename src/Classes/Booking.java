@@ -7,6 +7,7 @@ public class Booking
 {
     private int bookingID;
     private int screeningID;
+    private int customerID;
     private String fName;
     private String lName;
     private int row;
@@ -26,6 +27,15 @@ public class Booking
         this.bookingStatus = bookingStatus;
         this.showtime = showtime;
         this.screeningName = screeningName;
+    }
+    public Booking(int bookingID, int screeningID, int customerID, int row, int seat, String bookingStatus)
+    {
+        this.bookingID = bookingID;
+        this.screeningID = screeningID;
+        this.customerID = customerID;
+        this.row = row;
+        this.seat = seat;
+        this.bookingStatus = bookingStatus;
     }
 
     public int getBookingID()
