@@ -51,6 +51,8 @@ public class Home extends Application
         topBar.setSpacing(10);
         topBar.setAlignment(Pos.CENTER);
 
+        topBar.setStyle("-fx-background-color: #660033;");
+
         // SCROLL PANE
         ScrollPane scrollPane = new ScrollPane();
 
