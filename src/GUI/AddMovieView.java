@@ -145,10 +145,6 @@ public class AddMovieView
 
             long ts = TimeController.getUnixTime(fieldPremiere.getText());
 
-            //System.out.println(ts);
-            //System.out.println(getDateFromTS(ts));
-            //System.out.println(formatForDB(ts));
-
             CreateMovieController cmc = CreateMovieController.getInstance();
 
             cmc.createMovie(fieldTitle.getText(), fieldDescription.getText(), ageRestrict, playTime, TimeController.formatForDB(ts), true, price, poster);

@@ -19,17 +19,6 @@ public class TheatreMap
             for (int j = 0; j < 16; j++)
             {
 
-                /*
-                if("output fra database/eller liste row og seat".equals("i og j fra loop"))
-
-                {
-                    String lol = "Set pixel til optaget";
-                }
-                else
-                {
-                pixel ledig
-                }
-                */
                 pixel = new Pixel("Ledig",i+1, j+1);
                 grid.add(pixel, i, j);
             }

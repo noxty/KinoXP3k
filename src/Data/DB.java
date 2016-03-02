@@ -69,7 +69,7 @@ public class DB
 
             while (rs.next())
             {
-                // movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
+                //movies.add(new Movie(rs.getString("title"), 0, rs.getString("Description"), rs.getInt("ageRestriction"), rs.getInt("playingTime"), rs.getLong("Premiere"), rs.getBoolean("movieStatus"), rs.getDouble("Price")));
             }
 
         } catch (Exception e)
@@ -139,66 +139,4 @@ public class DB
 
 
 
-
-
-
-
-    // Udfører en Query, som ikke er et SELECT, UDEN parametre
-    public boolean executeQuery(String sqlString) throws SQLException
-    {
-        statement.executeUpdate(sqlString);
-        return true;
-    }
-
-    //Udfører en Query, som ikke er en SELECT, MED parametre
-    public boolean executeQuery(String sqlString, Map<Integer, String> cmdParameters) throws SQLException
-    {
-        preparedStatement = connection.prepareStatement(sqlString);
-
-        for (Map.Entry<Integer, String> entry: cmdParameters.entrySet())
-        {
-            preparedStatement.setString(entry.getKey(), entry.getValue());
-        }
-
-        preparedStatement.executeUpdate();
-        return true;
-    }
-
-    //Henter et query der ER en SELECT
-    public ResultSet getResult(String sqlString) throws SQLException
-    {
-        statement.executeQuery(sqlString);
-        resultSet = statement.getResultSet();
-        return resultSet;
-    }
-    //Henter et query der ER en select, med parametre
-    public ResultSet getResult(String sqlString, Map<Integer, String> cmdParameters) throws SQLException
-    {
-        preparedStatement = connection.prepareStatement(sqlString);
-        for (Map.Entry<Integer, String> entry: cmdParameters.entrySet())
-        {
-            preparedStatement.setString(entry.getKey(), entry.getValue());
-        }
-        preparedStatement.executeQuery();
-        return resultSet;
-    }
-
-    //Kan sikkert gøres bedre og er dum. Bliver kun brugt en enkelt gang, da det er lavet dumt.
-    public ResultSet secondaryResultSet(String sqlString)
-    {
-        try
-        {
-            statement = connection.createStatement();
-            statement.executeQuery(sqlString);
-
-            return statement.getResultSet();
-        }
-
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }

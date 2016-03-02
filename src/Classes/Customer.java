@@ -47,36 +47,6 @@ public class Customer extends Person
         return value;
     }
 
-/*
-    public static int getCustomerInt(String string)
-    {
-        int value = 0;
-        try
-        {
-            DB db = DB.getInstance();
-
-            Statement stmt = db.getConnection().createStatement();
-            ResultSet rs;
-
-            String sqlString = string;
-            rs = stmt.executeQuery(sqlString);
-
-
-            while (rs.next())
-            {
-                value = rs.getInt(1);
-
-            }
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        return value;
-    }
-*/
     public static List<Customer> getCustomers(String string)
     {
         List<Customer> customers = new ArrayList<>();
@@ -106,20 +76,4 @@ public class Customer extends Person
         return customers;
     }
 
-
-/*
-    public static boolean ifExist(String string)
-    {
-
-        if(getCustomerInt("SELECT COUNT(*) AS countSeats FROM customer WHERE customer.phoneNo = " + string) > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
-    }
-*/
 }
