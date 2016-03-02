@@ -23,19 +23,10 @@ public class ScreeningView
         GridPane layoutGrid = new GridPane();
 
         Label labelSearchTitle = new Label("Movie Title");
-        //TextField titleText = new TextField("");
 
         Label labelTheatreID = new Label("Theatre");
-        //TextField theatreID = new TextField("");
 
         ComboBox<Movie> comboMovie = new ComboBox();
-        //comboMovie.getItems().addAll();
-
-        /*
-        for (Movie m : GetMovieController.getMovies()) {
-            comboMovie.getItems().add(m.getTitle());
-        }
-        */
 
         comboMovie.getItems().addAll(GetMovieController.getMovies());
         comboMovie.setValue(comboMovie.getItems().get(0));
@@ -51,7 +42,6 @@ public class ScreeningView
         comboTime.setValue(comboTime.getItems().get(0));
 
         Button button = new Button("Create");
-        //button.setStyle("-fx-background-color: pink;-fx-box-shadow:10px 10px 10px 10px");
 
         button.setOnMouseClicked(e -> {
             ScreeningController sc = ScreeningController.getInstance();
