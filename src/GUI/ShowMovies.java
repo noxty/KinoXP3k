@@ -118,7 +118,7 @@ public class ShowMovies
             //moviePosterBox.setAlignment(Pos.BOTTOM_LEFT);
 
             moviePosterBox.setPrefSize(movieBoxWidth, movieBoxHeight);
-            moviePosterBox.setStyle("-fx-background-image: url("+m.getPoster()+")");
+            moviePosterBox.setStyle("-fx-background-image: url("+m.getPoster()+"); -fx-cursor: hand;");
             moviePosterBox.setOnMouseClicked(e ->
             {
                 layout.getChildren().clear();

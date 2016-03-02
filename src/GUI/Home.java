@@ -89,6 +89,10 @@ public class Home extends Application
         });
 
         // SET SCENE/STAGE
+
+        stage.setMaximized(true);
+        stage.setTitle("xXx_KinoXP3K+1ftw360nOsCoPeZ_xXx");
+
         Scene scene = new Scene(pane, sceneWidth, sceneHeight);
         scene.getStylesheets().add("KinoStyle.css");
         stage.setScene(scene);
